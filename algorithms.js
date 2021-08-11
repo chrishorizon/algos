@@ -516,17 +516,71 @@ class SLList {
     }
 
     addToFront(value) {
-        // Your Code Here
-        
+        // Step 1: Create a new node
+        var newNode = new SLNode(value);
+
+        // Step 2: Assign its .next to the current head
+        newNode.next = this.head;
+
+        // Step 3: Reassign the list's head to the node we just created
+        this.head = newNode;
+
+        // Step 4: we done
         return this;
     }
 
     addToBack(value) {
-        // Your Code Here
+        // EDGE CASE: List is empty
+        if(this.head == null) {
+            // If the list is empty, the head is null. If the head is null, there is no node in the list.
+            // Basically, if the list is empty, adding to the back is the same as adding to the front,
+            // and our addToFront method is done, so
+            return this.addToFront(value);
+        }
+        // Step 1: Create a new node
+        var newNode = new SLNode(value);
+
+        // Step 2: Start at the head of the list
+        var runner = this.head;
+
+        // Step 3: Run to the last node
+        while(runner.next != null) {
+            runner = runner.next;
+        }
+
+        // Step 4: Set the last node's .next attribute to be the new node we just created earlier
+        runner.next = newNode;
+
+        // Step 5: We done.
         return this;
     }
 
     contains(value) {
-        
+        // Step 1: Start at the head of the list
+        var runner = this.head;
+
+        while(runner != null) { // we're checking if runner is null instead of runner.next is null because we want to make sure we make our 
+            // comparison on the last node as well
+            // Step 2: Check if each node contains the value we're looking for
+            if(runner.value == value) {
+                // Step 3: If it does, return true
+                return true;
+            }
+
+            // Step 4: If not, move runner over 1
+            runner = runner.next;
+        }
+
+        // Step 5: If we finished our while loop, the value does not exist
+        return false;
     }
 }
+
+var newList = new SLList();
+
+newList.addToBack(5).addToBack(1).addToFront(3);
+
+console.log(newList)
+
+// WD4D2
+
