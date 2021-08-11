@@ -674,29 +674,81 @@ class SLList {
     }
 
     removeFront() {
-        if(!this.head){
-            return;
+        // If the list is empty, there's nothing to remove, so we'll just return null
+        if(this.head == null) {
+            return null;
         }
-        var temp = this.head;
-        this.head = temp.next;
-        temp.next = null;
-        return temp.value
+        // We need to keep track of the node we are planning on removing because we want to 
+        // ensure that we can return its value. Once we reassign the head, if there is no variable
+        // referencing the current head, we lose it forever.
+        var removed = this.head;
+        // Set the head to be the second node
+        this.head = removed.next;
+        // This one is kind of optional. Garbage collection will throw away original head once nothing is referencing it anymore
+        removed.next = null;
+        // And finally, return the value of the node we remove
+        return removed.value;
     }
 
     removeBack() {
-        var temp = this.head;
+        // EDGE CASE: If the list is empty, there's nothing to remove.
+        // If the list only contains 1 thing, the back is the front.
+        // Both cases are handled by our removeFront() method, soooo
+        if(this.head == null || this.head.next == null) {
+            return this.removeFront();
+        }
+
+        // Start our runner at the first node (always this.head)
         var runner = this.head;
 
-        while(runner.next != null){
+        // Now, we want to stop at the second to last node.
+        // while(runner.next != null) {
+        //      runner = runner.next;
+        // }
+        // will get runner to the LAST node.
+        // So:
+        while(runner.next.next != null) {
             runner = runner.next;
-        // Your Code Here
+        }
+        // this will get us to the SECOND TO LAST node.
+
+        // Because we want to remove the last node, and runner
+        // is at the second to last node, let's store the last node (runner.next)
+        // in a variable
+        var removed = runner.next;
+        // Then, to remove that last node, we just need to set runner.next to null
+        runner.next = null;
+        // And finally, return our removed node's value!
+        return removed.value;
+    }
+
+    moveMinToFront() {
+        var min = this.head;
+        var runner = min.next;
+        while (runner.next != null){
+            if (runner.value < min.value){
+                runner = 
+                this.head = runner;
+                return this;
+            }
+        }
+    }
+    
+    moveMaxToBack() {
+
     }
 }
 
 var myList = new SLList();
-myList.printList();
+myList.addToBack(7).addToBack(2).addToBack(3).addToBack(1).addToBack(4);
 
-myList.addToBack(1).addToBack(2).addToBack(3).addToBack(4);
-myList.printList();
+myList.moveMinToFront()
+myList.printList() // expected: H: 1 -> 7 -> 2 -> 3 -> 4 ->
 
-console.log(myList.removeBack())
+
+// var secondList = new SLList();
+// secondList.addToBack(7).addToBack(2).addToBack(3).addToBack(1).addToBack(4);
+
+// myList.moveMaxToBack()
+// myList.printList() // expected: H: 2 -> 3 -> 1 -> 4 -> 7 -> 
+
