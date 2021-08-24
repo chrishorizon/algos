@@ -745,6 +745,3 @@ myList.addToBack(7).addToBack(2).addToBack(3).addToBack(1).addToBack(4);
 myList.moveMinToFront()
 myList.printList() // expected: H: 1 -> 7 -> 2 -> 3 -> 4 ->
 
-
-// var secondList = new SLList();
-// secondList.addToBack(7).addToBack(2).addToBack(3).addToBack(1).addToBack(4);
