@@ -27,3 +27,42 @@ function findNthFibNum(num) {
 }
 
 console.log(findNthFibNum(6))
+
+
+/* Recursive Factorial */
+
+function factorialNum(num){
+    if(num <= 1){
+        return 1;
+    }
+    return num * factorialNum(num-1)
+}
+// Explanation: 1*2*3 = 6
+console.log(factorialNum(3))
+
+/* Recursively reverse a string
+    helpful methods: str.slice(beginIndex[, endIndex]) */
+
+function revStr(str){
+    if(typeof str !== 'string') return "Not a string";
+    if(str == '') return '';
+    return str.slice(-1) + revStr(str.slice(0, -1))
+}
+const str1 = "abc";
+const str2 = "";
+const str3 = 5;
+
+console.log(revStr(str1))
+console.log(revStr(str2))
+console.log(revStr(str3))
+
+/* ----------------------------------------- */
+
+function grid(n, m){
+    if(n == 1 || m == 1){
+        return 1
+    }
+    return grid(n, m-1) + grid(n-1, m)
+}
+
+console.log(grid(3,8))
