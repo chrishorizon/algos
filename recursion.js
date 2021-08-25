@@ -65,4 +65,4 @@ function grid(n, m){
     return grid(n, m-1) + grid(n-1, m)
 }
 
-console.log(grid(3,8))
+console.log(grid(5,5))
