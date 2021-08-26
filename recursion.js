@@ -56,6 +56,42 @@ console.log(revStr(str1))
 console.log(revStr(str2))
 console.log(revStr(str3))
 
+/*
+    Recursive Binary Search
+    Input: SORTED array of ints, int value
+    Output: bool representing if value is found
+*/
+
+const nums1 = [1, 3, 5, 6];
+const searchNum1 = 4;
+const expected1 = false;
+
+const nums2 = [4, 5, 6, 8, 12];
+const searchNum2 = 5;
+const expected2 = true;
+
+const nums3 = [3, 4, 6, 8, 12];
+const searchNum3 = 3;
+const expected3 = true;
+
+function binarySearch(sortedNums, searchNum, left_idx = 0, right_idx = sortedNums.length -1) {
+    let mid = Math.trunc((left_idx + right_idx) /2);
+    if (sortedNums[mid] == searchNum){
+        return true;
+    }
+    if (left_idx > right_idx){
+        return false
+    }
+    if (sortedNums[mid] > searchNum){
+        right_idx = mid -1;
+    } else{
+        left_idx = mid +1;
+    }
+    return binarySearch(sortedNums, searchNum, left_idx, right_idx)
+}
+
+console.log(binarySearch(nums1, searchNum1, 0, nums2.length-1));
+
 /* ----------------------------------------- */
 
 function grid(n, m){
