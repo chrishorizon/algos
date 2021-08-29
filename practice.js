@@ -1,4 +1,4 @@
-// Reverse an array
+// Reverse an array ----------------
 var arr = [1, 2, 3, 4, 5];
 
 // built-in function for reverse
@@ -16,6 +16,5 @@ function reverseArr(array){
     // After the loop completes, return the variable 
     return temp;
 }
-
 console.log(reverseArr(arr))
 
