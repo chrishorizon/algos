@@ -164,7 +164,7 @@ function merge(left, right) {
     // return arr;
     return [...arr, ...left, ...right]
 }
-// console.log(merge(sortedA3, sortedB3))
+console.log(merge(sortedA3, sortedB3))
 
 // mergeSort
 const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -185,3 +185,66 @@ function mergeSort(nums) {
 }
 
 console.log(mergeSort(numsRandomOrder))
+
+/*  Partition Sort----------------
+    Params: nums, left, right
+        - left and right are indexes, for now, left will be 0, and right will be
+            the last idx.
+        - later these params will be used to specify a sub section of the array to
+            partition.
+    Steps:
+    1. Pick an number out of the arr to be your pivot value
+        - usually the middle idx but can be any.
+    2. Partition the array IN PLACE such that all values less than the pivot
+        value are to the left of it and all values greater than the pivot value
+        are to the right (not perfectly sorted).
+    3. return: the index where the left section of smaller items ends.
+    "Choosing a random pivot minimizes the chance that you will encounter
+    worst-case O(n^2) performance (always choosing first or last would cause
+    worst-case performance for nearly-sorted or nearly-reverse-sorted data).
+    Choosing the middle element would also be acceptable in the majority of
+    cases."
+    https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot
+*/
+
+const nums1 = [11, 8, 14, 3, 6, 2, 7];
+const nums2 = [11, 8, 14, 3, 3, 3, 6, 2, 7];
+const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+
+function partition(nums = [], left = 0, right = nums.length - 1) {
+    let pivot = nums[Math.floor(Math.random() * (right - left) + 1) + left];
+    while (left < right) {
+        while (nums[left] < pivot) {
+            left++;
+        }
+        while (nums[right] > pivot) {
+            right--;
+        }
+        if (left != right) {
+            [nums[left], nums[right]] = [nums[right], nums[left]];
+        }
+    }
+    return right;
+}
+
+function partition(nums, left = 0, right = nums.length - 1) {
+    var pivot = Math.floor(nums.length / 2); // leave as this for now since partition looks wild otherwise.
+    var i = left - 1;
+    var j = right + 1;
+    while (true) {
+        do {
+            i++;
+        } while (nums[i] < nums[pivot]);
+        do {
+            j--;
+        } while (nums[j] > nums[pivot]);
+        if (i >= j) {
+            return j;
+        }
+        [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+}
+partition(nums1)
+console.log(nums1)
+
+module.exports = { partition };
