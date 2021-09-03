@@ -207,26 +207,50 @@ console.log(mergeSort(numsRandomOrder))
     https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot
 */
 
-const nums1 = [11, 8, 14, 3, 6, 2, 7];
-const nums2 = [11, 8, 14, 3, 3, 3, 6, 2, 7];
-const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
 
+// Partition Hoare's Algo
 function partition(nums = [], left = 0, right = nums.length - 1) {
-    let pivot = nums[Math.floor(Math.random() * (right - left) + 1) + left];
+    const midIdx = Math.floor((left + right) / 2);
+    const pivotVal = nums[midIdx];
+    let leftIdx = left;
+    let rightIdx = right;
+
+    while (true) {
+        while (nums[leftIdx] < pivotVal) {
+            leftIdx += 1;
+        }
+
+        while (nums[rightIdx] > pivotVal) {
+            rightIdx -= 1;
+        }
+
+        if (leftIdx >= rightIdx) {
+            return rightIdx;
+        }
+
+        [nums[leftIdx], nums[rightIdx]] = [nums[rightIdx], nums[leftIdx]];
+        leftIdx += 1;
+        rightIdx -= 1;
+    }
+}
+
+// Partition Version 1
+const partition = (array, left, right) => {
+    let pivot = array[Math.floor(Math.random() * (right - left) + 1) + left]; // random number between left & arr.length - 1
     while (left < right) {
-        while (nums[left] < pivot) {
+        while (array[left] < pivot) {
             left++;
         }
-        while (nums[right] > pivot) {
+        while (array[right] > pivot) {
             right--;
         }
-        if (left != right) {
-            [nums[left], nums[right]] = [nums[right], nums[left]];
-        }
+        [array[left], array[right]] = [array[right], array[left]]
     }
     return right;
 }
 
+// Partition Version 2
 function partition(nums, left = 0, right = nums.length - 1) {
     var pivot = Math.floor(nums.length / 2); // leave as this for now since partition looks wild otherwise.
     var i = left - 1;
@@ -244,7 +268,9 @@ function partition(nums, left = 0, right = nums.length - 1) {
         [nums[i], nums[j]] = [nums[j], nums[i]];
     }
 }
-partition(nums1)
-console.log(nums1)
+partition(nums)
+console.log(nums)
 
 module.exports = { partition };
+
+// Quicksort
