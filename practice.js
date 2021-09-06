@@ -58,3 +58,7 @@ for(var i=1; i <= 100; i++){
         console.log(i)
     }
 }
+
+for(var i = 1; i <= 100; i++){
+    (i % 15 == 0 ? console.log("Fizzbuzz") : console.log(i));
+}
