@@ -18,3 +18,43 @@ function reverseArr(array){
 }
 console.log(reverseArr(arr))
 
+// Reverse an array and string
+var arr1 = [1, 2, 3, 4, 5];
+var strng = "Chris";
+
+function revStr(str){
+    return str.split('').reverse().join('')
+}
+
+console.log(revStr(strng))
+
+var newArr1 = arr1.reverse();
+
+console.log(newArr1)
+
+var arr2 = [1, 2, 3, 4, 5, 8, 10, 20, 50, 100];
+
+function revArr1(arr){
+    let chars = [];
+    for(var i = arr.length -1; i >= 0; i--){
+        chars.push(arr[i])
+    }
+    return chars;
+}
+
+console.log(revArr1(arr2))
+
+
+for(var i=1; i <= 100; i++){
+    if(i % 15 == 0){
+        console.log('FizzBuzz');
+    }
+    else if(i % 3 == 0){
+        console.log('Fizz');
+    }
+    else if(i % 5 == 0){
+        console.log('Buzz');
+    } else {
+        console.log(i)
+    }
+}
