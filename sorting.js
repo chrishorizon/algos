@@ -271,6 +271,29 @@ function partition(nums, left = 0, right = nums.length - 1) {
 partition(nums)
 console.log(nums)
 
-module.exports = { partition };
+// Quicksort ----------------------------------------
+/* Params: nums, left, right
+    - left and right are indexes, for now, left will be 0, and right will be the
+    last idx.
+    - later these params will be used to specify a sub section of the array to
+    partition.
+    Steps:
+    - start by partitioning the full array
+    (use the previously built partition algo).
+    - then partition the left side of the array
+    (left of the returned partition idx) and the right side
+    (right of the returned partition idx), recursively. */
 
-// Quicksort
+const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+const expected = [1, 3, 4, 9, 12, 13, 17, 21, 27];
+
+function quickSort(nums = [], left = 0, right = nums.length - 1) {
+    if (left >= right) return nums;
+
+    let pivotIdx = partition(nums, left, right);
+
+    quickSort(nums, left, pivotIdx - 1);
+    quickSort(nums, pivotIdx + 1, right);
+
+    return nums;
+}
