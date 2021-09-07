@@ -32,24 +32,16 @@ absolute difference = 0
 */
 
 function diagonalDifference(sqrMatrix) {
-    //the max and min should start at the length so 0-x, x-0
-    var x = sqrMatrix.length;
-    //add nums[i][i] for 1,2,3 and 3,2,1 and get the difference
-    var leftTopRightBottom = 0;
-    var rightTopLeftBottom = 0;
-    var i = 0;
-    var j = x - 1;
-    while (j !== -1 && i !== x) {
-        var forLeft = sqrMatrix[j][i];
-        var forRight = sqrMatrix[j][j];
-        leftTopRightBottom += forLeft
-        rightTopLeftBottom += forRight
-        i++;
-        j--;
+    let sum1 = 0;
+    let sum2 = 0;
+    for (let i = 0; i < sqrMatrix.length; i++){
+        sum1 += sqrMatrix[i][i]
+        sum2 += sqrMatrix[i][sqrMatrix.length-1-i];
     }
-    var difference = leftTopRightBottom - rightTopLeftBottom;
-    return difference;
+    return Math.abs(sum1 - sum2)
 }
+
+console.log(diagonalDifference(squareMatrix2))
 
 /* Union Sorted Arrays
 Efficiently combine two already-sorted multiset arrays
