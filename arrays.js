@@ -85,15 +85,105 @@ function orderedMultisetUnion(sortedA, sortedB) {
             b++;
         }
     }
-
     while (a < sortedA.length) {
         arr.push(sortedA[a]);
         a++;
     }
-
     while (b < sortedB.length) {
         arr.push(sortedB[b]);
         b++;
     }
     return arr;
 }
+
+/* ------------------------------------------------------------------------
+* It ain't much, but it's honest work. A worker who measures water level
+* fluctuations in a river is asked to find the largest fluctuation in water
+* levels during a day, but only for rises in water levels.
+    - @param {Array<number>} waterLevels Non-empty .
+    - @returns {number} The max water-level rise amount or -1 if none.
+*/
+
+const riverLevels1 = [15, 17, 30];
+const expected1 = 15; // 30 - 15 = 15
+
+const riverLevels2 = [15, 17, 30, 14, 5, 16, 25, 9, 3];
+const expected2 = 20; // 25 - 5 = 20
+
+const riverLevels3 = [21, 18, 10, 11, 14, 9, 5, 13, 15, 7, 1, 6, 12, 4];
+const expected3 = 11; // 12 - 1 = 11
+
+const riverLevels4 = [1, 5];
+const expected4 = 4;
+
+const riverLevels5 = [5, 1];
+const expected5 = -1;
+
+const riverLevels6 = [9, 7, 7, 7];
+const expected6 = -1;
+
+const riverLevels7 = [42];
+const expected7 = -1;
+
+function measureWaterLevels(waterLevels) {
+    var rise = -1;
+    var level = waterLevels[0];
+    for(var i=1; i < waterLevels.length; i++){
+        if(waterLevels[i] - level > rise){
+            rise = waterLevels[i] - level;
+        }
+        if(waterLevels[i] < level){
+            level = waterLevels[i];
+        }
+    }
+    return rise;
+}
+console.log(measureWaterLevels(riverLevels1))
+
+/* Symmetric Differences --------------------------------------------------------------
+Given two arrays of ints, return the symmetric differences, (aka disjunctive union)
+    - these are the elements which are in either of the sets and not their intersection (the union without the intersection)
+    think of a venn diagram filled in except the overlapping middle part is not filled in (the intersection is excluded)
+    - i.e., if an element is in at least one of the arrays, but not in any other, it should be included (dupes included 1 time only)
+Venn Diagram Visualization:
+    - https://miro.medium.com/max/3194/1*N3Z94nCNu8IHsFenIAELJw.jpeg
+
+* @param  {Array<number>} numsA
+* @param  {Array<number>} numsB
+* Both given sets are multisets in any order (contain dupes).
+* @returns {Array<number>} The union of the given sets but excluding the shared
+* values (union without intersection).
+* i.e., if the element is in one array and NOT the other, it should be
+* included in the return.
+*/
+
+const test1NumsA = [1, 2];
+const test1NumsB = [2, 1];
+const expected1 = [];
+// Explanation: 1 and 2 are in both arrays so are excluded
+
+const test2NumsA = [1, 2, 3];
+const test2NumsB = [4, 5, 6];
+const expected2 = [1, 2, 3, 4, 5, 6];
+// Explanation: neither array has shared values, so all are included
+
+const test3NumsA = [4, 1, 2, 3, 4];
+const test3NumsB = [1, 2, 3, 5, 5, 2];
+const expected3 = [4, 5];
+
+function symmetricDifferences(numsA, numsB) {
+    let newarr = []
+    for (let i = 0; i < numsA.length; i++) {
+        if (!numsB.includes(numsA[i])) {
+            newarr.push(numsA[i])
+        }
+    }
+    for (let i = 0; i < numsB.length; i++) {
+        if (!numsA.includes(numsB[i])) {
+            newarr.push(numsB[i])
+        }
+    }
+    return [...new Set(newarr)]
+}
+
+console.log(symmetricDifferences(test3NumsA, test3NumsB))
