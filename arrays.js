@@ -271,3 +271,101 @@ function findConsqSums(nums, targetSum) {
 }
 
 console.log(findConsqSums(nums2, 16))
+
+
+/* ******************************************************************************************************
+    Asked in "Python interview with a LinkedIn engineer: Matching pairs": https://youtu.be/wBXZD436JAg
+    Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+    You may assume that each input would have exactly one solution, and you may not use the same element twice.
+    * @param {Array<number>} nums Unordered nums.
+    * @param {number} targetSum
+    * @returns {Array<number>} The two indexes of the numbers in the given nums that add up to the targetSum.
+*/
+
+const nums1 = [2, 11, 7, 15];
+const targetSum1 = 9;
+
+// Order doesn't matter. Explanation: nums[0] + nums[2] = 2 + 7 = 9
+const expected1 = [0, 2];
+
+function twoSum(nums, targetSum) {
+    let numsTotal = [];
+    for(let i = 0; i <= nums.length -1; i++){
+        for(let j = i + 1; j <= nums.length -1; j++){
+            if(nums[i] + nums[j] == targetSum){
+                numsTotal.push(i,j)
+            }
+        }
+    }
+    return numsTotal;
+}
+
+// Version 2
+function twoSum2(nums, targetSum) {
+    //create a map to store 1)key: the sum value we need, 2)value: the index of current element
+    var sumMap = new Map();
+    for (var i = 0; i < nums.length; i++) {
+        // if the current element is the sum value we need, we return it
+        if (sumMap.has(nums[i])) {
+            return [sumMap.get(nums[i]), i];
+        }
+        // if not, store the key-value pair in hashmap
+        sumMap.set(targetSum - nums[i], i);
+    }
+}
+
+console.log(twoSum2(nums1, 17))
+
+// From a technical interview with an AWS engineer: https://youtu.be/t0OQAD5gjd8
+
+/* 
+    Given an unsorted non-empty array of integers and int k, return the k most frequent elements (in any order)
+    These example inputs are sorted for readability, but the input is NOT guaranteed to be sorted and the output does NOT need to be in any specific order
+    * Returns the k most frequently occurring numbers from the given unordered nums.
+    * @param {Array<number>} nums Unordered.
+    * @param {number} k Represents the amount of numbers that should be returned.
+    * @returns {Array<number>} The k most frequently occurring numbers.
+*/
+
+const nums1 = [1, 1, 1, 2, 2, 3];
+const k1 = 2;
+const expected1 = [1, 2];
+// Explanation: return the two most frequent elements, 1 and 2 are the two most frequent elements
+
+const nums2 = [0, 0, 0, 2, 2, 3];
+const k2 = 1;
+const expected2 = [0];
+// Explanation: k being 1 means return the single most frequent element
+
+const nums3 = [1, 1, 2, 2, 3, 3];
+const k3 = 3;
+const expected3 = [1, 2, 3];
+
+function kMostFrequent(nums, k) {
+    let dict = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (!dict[nums[i]]) {
+            dict[nums[i]] = 1;
+        } else {
+            dict[nums[i]] += 1;
+        }
+    }
+    let sortable = [];
+    for (entry in dict) {
+        sortable.push([entry, dict[entry]]);
+    }
+
+
+    sortable.sort((a, b) => {
+        return b[1] - a[1];
+    });
+    console.log(sortable);
+    // sortable.slice(0,k)
+    let arr = [];
+    for (let j = 0; j < k; j++) {
+        arr.push(parseInt(sortable[j][0]));
+    }
+    return arr;
+}
+
+console.log(kMostFrequent(nums1, 2))
