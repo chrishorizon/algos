@@ -355,7 +355,6 @@ function kMostFrequent(nums, k) {
         sortable.push([entry, dict[entry]]);
     }
 
-
     sortable.sort((a, b) => {
         return b[1] - a[1];
     });
