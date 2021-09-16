@@ -300,6 +300,7 @@ const people = [
 
 const searchFor1 = "Jo";
 const searchBy1 = "firstName";
+const searchMethod1 = 'includes';
 const expected1 = [
     {
         firstName: "John",
@@ -375,7 +376,7 @@ function filterByKey3(items, searchFor, searchBy) {
     return items.filter((item) => item[searchBy].toLowerCase().startsWith(searchFor.toLowerCase()));
 }
 
-console.log(filterByKey(people, searchFor1, searchBy1))
+console.log(filterByKey2(people, searchFor4, searchBy4, searchMethod4))
 
 const filteredList = filterByKey(people, searchFor3, searchBy3)
 console.log(filteredList)
@@ -388,8 +389,10 @@ Given an array of person objects with the following keys:
     A person is at high risk of catching the virus if they meet all the below criteria:
     1. not practicing social distancing
     2. have a friend who is not practicing social distancing whom hasCovid
-    Bonus: after solving it, make a 2nd solution to practice functional programming with built in methods
-*/
+*//**
+ * @param {Array<Person>} persons
+ * @returns {Array<string>}
+ */
 
 const friend1 = {
     firstName: "Friend",
@@ -449,16 +452,6 @@ const expected = ["Person One", "Person Three"];
  * @property {boolean} isSocialDistancing
  */
 
-/**
- * Finds the people who are at risk of contracting Covid.
- * - Time O(?).
- * - Space O(?).
- * @param {Array<Person>} persons
- * @returns {Array<string>} An array of Person full names for those people who
- *    are at risk. A Person is at risk if:
- *    1. not practicing social distancing.
- *    2. have a friend who is not practicing social distancing whom hasCovid.
- */
 
 function coronaVirusAtRisk(persons) {
     var atRiskPeople = [];
@@ -477,3 +470,7 @@ function coronaVirusAtRisk(persons) {
     })
     return atRiskPeople;
 }
+
+const theInfected = coronaVirusAtRisk(people)
+
+console.log(theInfected)
