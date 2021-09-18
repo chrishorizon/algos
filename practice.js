@@ -63,16 +63,28 @@ for(var i = 1; i <= 100; i++){
     (i % 15 == 0 ? console.log("Fizzbuzz") : console.log(i));
 }
 
-var testOne = ["a", "b", "c", "d", "e"]
+var testOne = "abcdefg";
 
-function revArr(arr){
-    let newArr = [];
-    for(let i = arr.length -1; i >= 0; i--){
-        newArr.push(arr[i])
+function revStr(str){
+    let newStr = "";
+    for(var i = str.length -1; i >= 0; i--){
+        newStr += "(" + str[i] + ") "
     }
-    return newArr;
+    return newStr;
 }
 
-var revTestOne = revArr(testOne)
-
+var revTestOne = revStr(testOne)
 console.log(revTestOne)
+
+
+for(var i = 1; i <= 100; i++){
+    if(i % 15 == 0){
+        console.log("Fizzbuzz")
+    } else if(i % 5 == 0){
+        console.log("Buzz")
+    } else if(i % 3 == 0){
+        console.log("Fizz")
+    } else {
+        console.log(i)
+    }
+}
