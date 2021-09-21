@@ -479,31 +479,31 @@ console.log(theInfected)
 /* ******************************************************************************* */
 
 /* 
-  Optional chaining is a newer syntax that can help with this problem in general (not necessarily intended to be used here): 
+Optional chaining is a newer syntax that can help with this problem in general (not necessarily intended to be used here):
     https://levelup.gitconnected.com/new-javascript-features-in-2019-optional-chaining-null-coalescing-a7fd38f4ef2d
-  The more you deal with objects, especially ones with many nested objects, where you
-  are chaining dot notation to access nested values, the more you run into these errors:
+The more you deal with objects, especially ones with many nested objects, where you
+are chaining dot notation to access nested values, the more you run into these errors:
     Uncaught TypeError: Cannot read property 'keyName' of undefined
     Uncaught TypeError: Cannot read property 'keyName' of null
-  
-  These errors mean, somewhere along your chain of dots, one of the keys did not exist
-  on the object so it returned undefined, and then the next dot was trying to access
-  a key on undefined, or the key did exist but null was it's value.
-  One example of how this might happen is getting JSON data back from an API. Sometimes, 
-  the record you requested has more data so there are more levels of nesting, which you get used to,
-  so you write your code to access the nested data but then you request a different record, and
-  less data is available, so your code breaks when trying to access nested data that isn't there.
-  There is an entire library dedicated to solving this problem, the solution is referred to as a "lens",
-  you look through a "lens" to help you see into an object and safely attempt to access a nested value.
-  Without a lens, you would need to interrupt your dot chaining and check the value after each dot,
-  one at a time, to make sure it is not undefined or null before going to the next dot.
-  Input:
+
+These errors mean, somewhere along your chain of dots, one of the keys did not exist
+on the object so it returned undefined, and then the next dot was trying to access
+a key on undefined, or the key did exist but null was it's value.
+One example of how this might happen is getting JSON data back from an API. Sometimes,
+the record you requested has more data so there are more levels of nesting, which you get used to,
+so you write your code to access the nested data but then you request a different record, and
+less data is available, so your code breaks when trying to access nested data that isn't there.
+There is an entire library dedicated to solving this problem, the solution is referred to as a "lens",
+you look through a "lens" to help you see into an object and safely attempt to access a nested value.
+Without a lens, you would need to interrupt your dot chaining and check the value after each dot,
+one at a time, to make sure it is not undefined or null before going to the next dot.
+Input:
     Object,
     Array of strings representing a path of keys in the Object
-  Output:
+Output:
     - Value from traversing the object to the last key
     - null if at any point accessing a key returns undefined
-      - this means a key was not found / the Object was not nested as deep as the path of keys goes
+    - this means a key was not found / the Object was not nested as deep as the path of keys goes
     - the given object if array of keys is empty
 *//**
  * Retrieves the value at the end of the path of keys or null.
@@ -557,21 +557,24 @@ console.log(lens(user, keys1))
 /*****************************************************************************/
 
 /* 
-  Create a function to determine the max amount of
-  servings that can be made based on a recipe and
-  available ingredients.
-  Input:
-    - recipe object where keys are ingredient names
-      and values are unit required (int)
-    - available ingredients object where keys are ingredient
-      names and values are unit available (int)
-  Output:
-    int (max servings)
-  Side note (not needed for solution): Realistically, the values
-  would be an object as well with the keys: unit (unit of measure), and amount.
-  If the available ingredient was stored in a different unit,
-  a conversion table would be needed to convert units of measure.
-*/
+Create a function to determine the max amount of servings that can be made based on a recipe and
+available ingredients.
+Input:
+- recipe object where keys are ingredient names
+    and values are unit required (int)
+- available ingredients object where keys are ingredient
+    names and values are unit available (int)
+Output:
+int (max servings)
+*//**
+ * Determines how many servings can be made of the given recipe.
+ * @typedef {string} IngredientName
+ * @typedef {number} Quantity
+ * @typedef {Object<IngredientName, Quantity>} Ingredients
+ * @param {Ingredients} recipe
+ * @param {Ingredients} available
+ * @returns {number} Max servings of the recipe that can be made.
+ */
 
 const recipe1 = {
     "organic fat": 99,
@@ -606,17 +609,6 @@ const available3 = { ...available1 };
 delete available3["live squid"];
 const expected3 = 0; // live squid key doesn't exist in available ingredients
 
-/**
- * Determines how many servings can be made of the given recipe.
- * - Time: O(?).
- * - Space: O(?).
- * @typedef {string} IngredientName
- * @typedef {number} Quantity
- * @typedef {Object<IngredientName, Quantity>} Ingredients
- * @param {Ingredients} recipe
- * @param {Ingredients} available
- * @returns {number} Max servings of the recipe that can be made.
- */
 
 function getMaxServings(recipe, available) {
     var maxServings;
@@ -633,4 +625,171 @@ function getMaxServings(recipe, available) {
         }
     }
     return maxServings;
+}
+
+/*****************************************************************************/
+
+/* 
+Given an array of objects that contain a category key,
+return a hash table to group the objects by their category.
+Make the grouping case-insensitive.
+Bonus: allow the key that is grouped by to be provided.
+*/
+
+const objects = [
+    {
+        name: "Baby Yoda",
+        category: "cute",
+    },
+    {
+        name: "Cricket Protein",
+        category: "food",
+    },
+    {
+        name: "Shibe",
+        category: "Cute",
+    },
+    {
+        name: "Ancient India",
+        category: "Cradle of Civilization",
+    },
+    {
+        name: "Wasp Crackers",
+        category: "Food",
+    },
+    {
+        name: "The Fertile Crescent",
+        category: "Cradle of Civilization",
+    },
+];
+
+const expected = {
+    cute: [
+        {
+            name: "Baby Yoda",
+            category: "cute",
+        },
+        {
+            name: "Shibe",
+            category: "Cute",
+        },
+    ],
+    food: [
+        {
+            name: "Cricket Protein",
+            category: "food",
+        },
+        {
+            name: "Wasp Crackers",
+            category: "Food",
+        },
+    ],
+    "cradle of civilization": [
+        {
+            name: "Ancient India",
+            category: "Cradle of Civilization",
+        },
+        {
+            name: "The Fertile Crescent",
+            category: "Cradle of Civilization",
+        },
+    ],
+};
+
+/**
+ * Creates a hash table of case-insensitive categories mapped to the items
+ * belonging to that category.
+ * @param {Array<Object>} items
+ * @param {string} items.category
+ * @returns {Object<string, Array<Object>>} The hash category hash table with
+ *    string keys and array of objects as values.
+ */
+function groupObjects(items) {
+    let grouped = {}
+    let cat;
+    for (let i = 0; i < items.length; i++) {
+        cat = items[i].category.toLowerCase()
+        if (!(cat in grouped)) {
+            grouped[cat] = [items[i]]
+        } else {
+            grouped[cat].push(items[i])
+        }
+    }
+    return grouped;
+}
+console.log(groupObjects(objects));
+
+/* 
+Given two strings S and T containing only lowercase letters and "#" characters,
+return if they are equal when both are typed into empty text editors.
+# character means a backspace character.
+i.e., after processing the backspaces, are the two strings equal?
+Bonus: solve in O(n) time
+*/
+
+const S1 = "ab#c";
+const T1 = "ad#c";
+const expected1 = true;
+// Explanation: Both S and T become "ac"
+
+const S2 = "ab##";
+const T2 = "c#d#";
+const expected2 = true;
+// Explanation: Both S and T become ""
+
+const S3 = "a##c";
+const T3 = "#a#c";
+const expected3 = true;
+// Explanation: Both S and T become "c"
+
+const S4 = "a#c";
+const T4 = "b";
+const expected4 = false;
+// Explanation: S becomes "c" while T becomes "b".
+
+/**
+ * Determines if the given strings are equal after the backspace characters
+ * "#" are processed.
+ * - Time: O(?).
+ * - Space: O(?).
+ * @param {string} S
+ * @param {string} T
+ * @returns {boolean} Whether the given strings are equal after backspaces
+ *    have been processed.
+ */
+
+function backspaceStringCompare(S, T) {
+    var string1 = '';
+    var string2 = '';
+    var k = S.length - 1;
+    var j = T.length - 1;
+    var kBack = 0;
+    var jBack = 0;
+    while (k >= 0 || j >= 0) {
+        if (S[k] === '#') {
+            kBack++;
+            k--;
+        } else {
+            if (kBack > 0) {
+                kBack--;
+                k--;
+            } else if (S[k] !== undefined) {
+                string1 = S[k] + string1;
+                k--;
+            }
+        }
+        if (T[j] === '#') {
+            jBack++;
+            j--;
+        } else {
+            if (jBack > 0) {
+                jBack--;
+                j--;
+            } else if (T[j] !== undefined) {
+                string2 = T[j] + string2;
+                j--;
+            }
+        }
+    }
+    return string1 === string2;
 }
