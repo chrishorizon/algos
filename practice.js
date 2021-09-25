@@ -88,3 +88,17 @@ for(var i = 1; i <= 100; i++){
         console.log(i)
     }
 }
+
+var sample = ["a", "b", 'c', 'd', 'e']
+
+function revArr(arr){
+    let newArr = [];
+    for(let i = arr.length -1; i >= 0; i--){
+        newArr.push(arr[i])
+    }
+    return newArr;
+}
+
+var newSample = revArr(sample)
+
+console.log(newSample)
