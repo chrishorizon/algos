@@ -1,12 +1,11 @@
+//   * Linked Lists: store data in objects, and each object stores a value and a pointer, pointing to the next object.
+//     - use application samples: image viewer, forward / backward in web pages
+
 /*
     hasLoop() 
-
     Write a method that will return a boolean based on whether a singly linked list has a loop.
-
     A SLL has a loop if there is no node with a .next of null (i.e. what should be the last node has a .next
     that points back at another previous node)
-
-
     HINT: https://www.youtube.com/watch?v=7UGu2sRmSHI&ab_channel=TopMovieClips
 */
 
