@@ -1,3 +1,6 @@
+//   * Linked Lists: store data in objects, and each object stores a value and a pointer, pointing to the next object.
+//     - use application samples: image viewer, forward / backward in web pages
+
 class Node {
     /**
      * Constructs a new Node instance. Executed when the 'new' keyword is used.
