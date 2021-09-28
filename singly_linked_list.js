@@ -72,11 +72,8 @@ class SinglyLinkedList {
         return arr;
     }
 
-    // ========================== DAY 1 START ====================================
     /**
      * Determines if this list is empty.
-     * - Time: O(?).
-     * - Space: O(?).
      * @returns {boolean}
      */
     isEmpty() {
@@ -86,8 +83,6 @@ class SinglyLinkedList {
     /**
      * Creates a new node with the given data and inserts it at the back of
      * this list.
-     * - Time: O(?).
-     * - Space: O(?).
      * @param {any} data The data to be added to the new node.
      * @returns {SinglyLinkedList} This list.
      */
@@ -110,6 +105,49 @@ class SinglyLinkedList {
         }
         return this;
     }
+    // ========================== DAY 2 START ====================================
+    /**
+     * Creates a new node with the given data and inserts that node at the front
+     * of this list.
+     * @param {any} data The data for the new node.
+     * @returns {SinglyLinkedList} This list.
+     */
+    insertAtFront(data) {
+        let firstNode = new Node(data)
+        if (this.isEmpty()){
+            this.head = firstNode
+        } else {
+            firstNode.next = this.head;
+            this.head = firstNode;
+        }
+        return this;
+    }
+
+    // Removes the first node of this list.
+    removeHead() {
+        if (this.isEmpty()){
+            return null;
+        }
+        this.head = this.head.next;
+        return this;
+    }
+
+    // Calculates the average of this list.
+    average() {
+        if (this.isEmpty()){
+            return null;
+        }
+        let runner = this.head;
+        let value = 0;
+        let count = 0;
+        while(runner != null){
+            value += runner.data;
+            count++;
+            runner = runner.next;
+        }
+        return value/count;
+    }
+
 }
 
 const emptyList = new SinglyLinkedList();
@@ -117,4 +155,4 @@ const singleNodeList = new SinglyLinkedList().seedFromArr([1]);
 const unorderedList = new SinglyLinkedList().seedFromArr([
     -5, -10, 4, -3, 6, 1, -7, 2,
 ]);
-
+console.log(unorderedList.average());
