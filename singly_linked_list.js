@@ -105,7 +105,7 @@ class SinglyLinkedList {
         }
         return this;
     }
-    // ========================== DAY 2 START ====================================
+
     /**
      * Creates a new node with the given data and inserts that node at the front
      * of this list.
@@ -125,18 +125,16 @@ class SinglyLinkedList {
 
     // Removes the first node of this list.
     removeHead() {
-        if (this.isEmpty()){
-            return null;
-        }
+        if (this.isEmpty()) return null;
+
         this.head = this.head.next;
         return this;
     }
 
     // Calculates the average of this list.
     average() {
-        if (this.isEmpty()){
-            return null;
-        }
+        if (this.isEmpty()) return null;
+
         let runner = this.head;
         let value = 0;
         let count = 0;
@@ -145,7 +143,108 @@ class SinglyLinkedList {
             count++;
             runner = runner.next;
         }
-        return value/count;
+        return value / count;
+    }
+    // ========================== DAY 3 START ====================================
+    /**
+     * Removes the last node of this list.
+     * @returns {any} The data from the node that was removed.
+     */
+    removeBack() {
+        // EDGE CASE: If the list is empty, there's nothing to remove.
+        // If the list only contains 1 thing, the back is the front.
+        // Both cases are handled by our removeFront() method, soooo
+        if(this.head == null || this.head.next == null) {
+            return this.removeHead();
+        }
+
+        // Start our runner at the first node (always this.head)
+        var runner = this.head;
+
+        // Now, we want to stop at the second to last node.
+        // while(runner.next != null) {
+        //      runner = runner.next;
+        // }
+        // will get runner to the LAST node.
+        // So:
+        while(runner.next.next != null) {
+            runner = runner.next;
+        }
+        // this will get us to the SECOND TO LAST node.
+
+        // Because we want to remove the last node, and runner
+        // is at the second to last node, let's store the last node (runner.next)
+        // in a variable
+        var removed = runner.next;
+        // Then, to remove that last node, we just need to set runner.next to null
+        runner.next = null;
+        // And finally, return our removed node's value!
+        return removed.data;
+    }
+
+    /**
+     * Determines whether or not the given search value exists in this list.
+     * @param {any} val The data to search for in the nodes of this list.
+     * @returns {boolean}
+     */
+    contains(val) {
+        // EDGE CASE: What if the list is empty?
+        if(this.head == null) {
+            // If there's nothing in the list, it can't contain a node with any value. Duh.
+            return false;
+        }
+
+        // Start at the head of the list
+        var runner = this.head;
+
+        // We need to check every single node
+        while(runner != null) {
+            // Check if the value of runner matches the value passed in
+            if(runner.data == val) {
+                // If it does, we're done
+                return true;
+            } else { // Otherwise, we need to move runner down the line
+                runner = runner.next;
+            }
+        }
+
+        // If we're still here, then we've checked every node, so we're done, and it's not there.
+        return false;
+    }
+
+    /**
+     * Determines whether or not the given search value exists in this list.
+     * @param {any} val The data to search for in the nodes of this list.
+     * @param {?node} current The current node during the traversal of this list
+     *    or null when the end of the list has been reached.
+     * @returns {boolean}
+     */
+    containsRecursive(val, current = this.head) {
+        if(current.data == val){
+            return true;
+        } else if(current.next == null){
+            return false;
+        }
+        return this.containsRecursive(val, current.next);
+    }
+
+    // EXTRA
+    /**
+     * Recursively finds the maximum integer data of the nodes in this list.
+     * @param {Node} runner The start or current node during traversal, or null
+     *    when the end of the list is reached.
+     * @param {Node} maxNode Keeps track of the node that contains the current
+     *    max integer as it's data.
+     * @returns {?number} The max int or null if none.
+     */
+    recursiveMax(runner = this.head, maxNode = this.head) {
+        if (this.head === null) return null;
+
+        if (runner === null) return maxNode.data;
+    
+        if (runner.data > maxNode.data) maxNode = runner;
+    
+        return this.recursiveMax(runner.next, maxNode);
     }
 
 }
