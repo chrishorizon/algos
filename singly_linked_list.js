@@ -145,7 +145,7 @@ class SinglyLinkedList {
         }
         return value / count;
     }
-    // ========================== DAY 3 START ====================================
+    
     /**
      * Removes the last node of this list.
      * @returns {any} The data from the node that was removed.
@@ -246,12 +246,61 @@ class SinglyLinkedList {
     
         return this.recursiveMax(runner.next, maxNode);
     }
+    // ========================== DAY 4 START ====================================
+    /**
+     * Retrieves the data of the second to last node in this list.
+     * @returns {any} The data of the second to last node or null if there is no
+     *    second to last node.
+     */
+    secondToLast() {
+        if(this.head == null || this.head.next == null){
+            return null;
+        }
+
+        let runner = this.head;
+        while(runner.next.next != null){
+            runner = runner.next;
+        }
+        return runner.data;
+    }
+
+    /**
+     * Removes the node that has the matching given val as it's data.
+     * @param {any} val The value to compare to the node's data to find the
+     *    node to be removed.
+     * @returns {boolean} Indicates if a node was removed or not.
+     */
+    removeVal(val) {
+        if (this.head.data == val) {
+            this.removeHead();
+            return true;
+        }
+        if (!this.contains(val)) {
+            return false;
+        }
+        let runner = this.head;
+        while (runner.next.data !== val) {
+            runner = runner.next;
+        }
+        runner.next = runner.next.next;
+        return true;
+    }
+
+    // EXTRA
+    /**
+     * Inserts a new node before a node that has the given value as its data.
+     * @param {any} newVal The value to use for the new node that is being added.
+     * @param {any} targetVal The value to use to find the node that the newVal
+     *    should be inserted in front of.
+     * @returns {boolean} To indicate whether the node was pre-pended or not.
+     */
+    prepend(newVal, targetVal) { }
 
 }
 
 const emptyList = new SinglyLinkedList();
 const singleNodeList = new SinglyLinkedList().seedFromArr([1]);
 const unorderedList = new SinglyLinkedList().seedFromArr([
-    -5, -10, 4, -3, 6, 1, -7, 2,
+    -5, -10, 4, -3, 6, 1, -7, 2
 ]);
-console.log(unorderedList.average());
+console.log(unorderedList.contains(100));
