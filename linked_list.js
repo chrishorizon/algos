@@ -164,6 +164,7 @@ class SLList {
         //  4. minPrev --> at the end, we'll use this to "skip around" the min
 
         var runner = this.head.next;
+        var walker = this.head;
 
         var min = walker; // we start this at walker because we don't know anything about
         // the values in our list, other than the fact that the first node exists and has a value.

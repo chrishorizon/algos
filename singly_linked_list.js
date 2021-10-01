@@ -228,7 +228,6 @@ class SinglyLinkedList {
         return this.containsRecursive(val, current.next);
     }
 
-    // EXTRA
     /**
      * Recursively finds the maximum integer data of the nodes in this list.
      * @param {Node} runner The start or current node during traversal, or null
@@ -246,7 +245,7 @@ class SinglyLinkedList {
     
         return this.recursiveMax(runner.next, maxNode);
     }
-    // ========================== DAY 4 START ====================================
+
     /**
      * Retrieves the data of the second to last node in this list.
      * @returns {any} The data of the second to last node or null if there is no
@@ -286,7 +285,6 @@ class SinglyLinkedList {
         return true;
     }
 
-    // EXTRA
     /**
      * Inserts a new node before a node that has the given value as its data.
      * @param {any} newVal The value to use for the new node that is being added.
@@ -294,7 +292,121 @@ class SinglyLinkedList {
      *    should be inserted in front of.
      * @returns {boolean} To indicate whether the node was pre-pended or not.
      */
-    prepend(newVal, targetVal) { }
+    prepend(newVal, targetVal) {
+        if (this.isEmpty()) return false;
+
+        let newNode = new Node(newVal);
+
+        if (this.head.data === targetVal) {
+            this.insertAtFront(newNode);
+            return true;
+        }
+
+        let runner1 = this.head.next;
+        let runner2 = this.head;
+
+        while (runner1 !== null) {
+            if (runner1.data === targetVal) {
+                newNode.next = runner1;
+                runner2.next = newNode;
+
+                return true;
+            }
+
+            runner1 = runner1.next;
+            runner2 = runner2.next;
+        }
+
+        return false;
+    }
+
+    // ========================== DAY 5 START ====================================
+    /**
+     * Concatenates the nodes of a given list onto the back of this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {SinglyLinkedList} addList An instance of a different list whose
+     *    whose nodes will be added to the back of this list.
+     * @returns {SinglyLinkedList} This list with the added nodes.
+     */
+    concat(addList) {
+        if(this.emptyList()){
+            return null;
+        }
+        let runner = this.head;
+        while(runner.next != null){
+            runner = runner.next;
+        }
+        runner.next = emptyList.head;
+        return this;
+    }
+
+    /**
+     * Finds the node with the smallest number as data and moves it to the front
+     * of this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {SinglyLinkedList} This list.
+     */
+    moveMinToFront() {
+        if (this.isEmpty()) {
+            return null
+        }
+        let minVal = this.head
+        let minValPrevious = this.head
+        let walker = this.head
+        let runner = walker.next
+        while (runner.next != null) {
+            if (runner.data < minVal.data) {
+                minVal = runner
+                minValPrevious = walker
+            }
+            runner = runner.next
+            walker = walker.next
+        }
+        minValPrevious.next = minVal.next
+        minVal.next = this.head
+        this.head = minVal
+        return this.head
+    }
+
+    // EXTRA
+    /**
+     * Splits this list into two lists where the 2nd list starts with the node
+     * that has the given value.
+     * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
+     * and the return value will be a new list containing (5=>2=>4)
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} val The value in the node that the list should be split on.
+     * @returns {SinglyLinkedList} The split list containing the nodes that are
+     *    no longer in this list.
+     */
+    splitOnVal(val) {
+        const newList = new SinglyLinkedList();
+
+        if (!this.head) {
+            return newList;
+        }
+
+        if (this.head.data === val) {
+            newList.head = this.head;
+            this.head = null;
+            return newList;
+        }
+
+        let runner = this.head;
+
+        while (runner.next) {
+            if (runner.next.data === val) {
+                newList.head = runner.next;
+                runner.next = null;
+                return newList;
+            }
+            runner = runner.next;
+        }
+        return newList;
+    }
 
 }
 
