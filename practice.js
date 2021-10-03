@@ -101,4 +101,4 @@ function revArr(arr){
 
 var newSample = revArr(sample)
 
-console.log(newSample)
+
