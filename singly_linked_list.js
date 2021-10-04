@@ -320,11 +320,8 @@ class SinglyLinkedList {
         return false;
     }
 
-    // ========================== DAY 5 START ====================================
     /**
      * Concatenates the nodes of a given list onto the back of this list.
-     * - Time: O(?).
-     * - Space: O(?).
      * @param {SinglyLinkedList} addList An instance of a different list whose
      *    whose nodes will be added to the back of this list.
      * @returns {SinglyLinkedList} This list with the added nodes.
@@ -344,8 +341,6 @@ class SinglyLinkedList {
     /**
      * Finds the node with the smallest number as data and moves it to the front
      * of this list.
-     * - Time: O(?).
-     * - Space: O(?).
      * @returns {SinglyLinkedList} This list.
      */
     moveMinToFront() {
@@ -376,8 +371,6 @@ class SinglyLinkedList {
      * that has the given value.
      * splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
      * and the return value will be a new list containing (5=>2=>4)
-     * - Time: O(?).
-     * - Space: O(?).
      * @param {any} val The value in the node that the list should be split on.
      * @returns {SinglyLinkedList} The split list containing the nodes that are
      *    no longer in this list.
@@ -416,3 +409,4 @@ const unorderedList = new SinglyLinkedList().seedFromArr([
     -5, -10, 4, -3, 6, 1, -7, 2
 ]);
 console.log(unorderedList.contains(100));
+
