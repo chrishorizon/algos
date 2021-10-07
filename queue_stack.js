@@ -5,17 +5,31 @@ class Node {
     }
 }
 
-class Stack {
+/**
+ * Class that represents a stack using a singly linked list
+ * Stacks follow a LIFO (Last In First Out) order where new Nodes are added
+ * to the top (last element in the SLL) and removed from the top.
+ * To navigate through a stack, we can ONLY use the pop and push methods.
+ * We cannot use any form of runner as we did with a regular linked list
+ */
+class SLLStack {
     constructor() {
         this.head = null;
     }
 
+    /**
+     * Returns whether the stack is empty or not
+     * @returns {boolean} is the stack empty true/false
+     */
     isEmpty() {
-        return this.head !== null;
+        return this.head === null;
     }
 
+    /**
+     * Returns the size of the stack
+     * @returns {number} the size of the stack
+     */
     size() {
-        // return length of Stack
         let len = 0;
         let runner = this.head;
 
@@ -26,10 +40,11 @@ class Stack {
         return len;
     }
 
-    push(newVal) {
-        // push newVal to top of stack
-        const newNode = new Node(val);
-
+    /**
+     * Takes a node and adds it to the top of the stack
+     * @param {Node} newNode the new node that is to be pushed to the top of the stack
+     */
+    push(newNode) {
         if (this.head === null) {
             this.head = newNode;
         } else {
@@ -38,8 +53,11 @@ class Stack {
         }
     }
 
+    /**
+     * Removes the Node at the top of the stack and returns it
+     * @returns {Node} the node that was removed
+     */
     pop() {
-        // remove and return data at top of stack
         if (this.head === null) {
             return null;
         }
@@ -50,15 +68,24 @@ class Stack {
         return removed;
     }
 
+    /**
+     * Returns the node at the top of the stack without removing
+     * @returns {Node} the node at the top of the stack
+     */
     peek() {
-        // return data at top of stack without removing
         return this.head ? this.head.data : null;
     }
 
     // EXTRA
+    /**
+     * Goes through the stack to see if it contains the value.
+     * Bonus: follow the concept of a stack and only use pop and push.
+     * By the end of the function, the stack should be in the original order it started in.
+     * It is only to use another stack.
+     * @param {any} value a value to search for in the stack
+     * @returns {boolean} true/false whether the value is in the stack
+     */
     contains(value) {
-        // return true if SLStack contains value
-        // return false if SLStack does not contain value
         let runner = this.head;
 
         while (runner) {
@@ -71,8 +98,13 @@ class Stack {
     }
 
     // EXTRA
+    /**
+     * Goes through the stack to print out all the values
+     * Bonus: follow the concept of a stack and only use pop and push.
+     * By the end of the function, the stack should be in the original order it started in.
+     * It is only to use another stack.
+     */
     print() {
-        // print out the values of the SLStack
         let runner = this.head;
         let vals = "";
 
@@ -85,30 +117,48 @@ class Stack {
     }
 }
 
-
 /**
- * Class to represent a queue using an array to store the queued items.
- * Follows a FIFO (First In First Out) order where new items are added to the
- * back and items are removed from the front.
+ * Class that represents a queue using a singly linked list
+ * Stacks follow a FIFO (First In First Out) order where new Nodes are added
+ * to the back (last element in the SLL) and removed from the top (first element in the SLL)
+ * When using a Queue, we can only add and remove items by using the enqueue and dequeue methods
  */
-class Queue {
+class SLQueue {
+    /**
+     * Method that instantiates the SLQueue object
+     * this.head points to the front of the queue
+     * this.tail points to the back of the queue
+     * this.size tracks the size. we need to make sure we increment or decrement
+     * this.size when we enqueue or dequeue
+     */
     constructor() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
+    /**
+     * Returns whether the queue is empty or not
+     * @returns {boolean} is the queue empty true/false
+     */
     isEmpty() {
-        return this.head === null;
+        return !this.head;
+        // same as return this.size === null;
     }
 
+    /**
+     * Returns the size of the queue
+     * @returns {number} the size of the queue
+     */
     getSize() {
         return this.size;
     }
 
-    enqueue(newVal) {
-        const newNode = new Node(newVal);
-
+    /**
+     * Takes a node and adds it to the top of the queue
+     * @param {Node} newNode the new node that is to be pushed to the back of the queue
+     */
+    enqueue(newNode) {
         if (this.isEmpty()) {
             this.head = newNode;
             this.tail = newNode;
@@ -116,57 +166,84 @@ class Queue {
             this.tail.next = newNode;
             this.tail = newNode;
         }
-
-        // pre-increment will modify this.size and THEN return the new size value
+        // pre-increment so the new size is returned otherwise old size is returned
         return ++this.size;
     }
 
-    // changed to return entire node
+    /**
+     * Removes the Node at the front of the queue and returns it
+     * @returns {Node} the node that was removed
+     */
     dequeue() {
-        if (this.isEmpty()) return null;
+        if (!this.head) {
+            return null;
+        }
 
-        // grab the node so we can return its data at the end
         const dequeued = this.head;
-        // move the head to the right. this removes the original head
         this.head = this.head.next;
-        // optional step to set the dequeued node's .next to null.
-        // not required but I like to explicitly state this
-        dequeued.next = null;
 
-        // if this.head is now equal to null, then there was only one thing in the queue
-        // we can then set this.tail to null to make sure tail doesn't point to any node that is dequeued
         if (this.head === null) {
             this.tail = null;
         }
 
         this.size--;
-
         return dequeued;
     }
 
+    /**
+     * Returns the node at the top of the queue without removing
+     * @returns {Node} the node at the top of the queue
+     */
     front() {
-        // ternary allows for this to be in one line
-        // if this.head is a node, the its truthy. if this.head is null, the its falsy
-        return this.head ? this.head.data : null;
+        return this.head ? this.head : null;
     }
 
-    contains(searchVal) {
+    // EXTRA
+    /**
+     * Goes through the queue to see if it contains the value.
+     * Bonus: follow the concept of a queue and only use pop and push.
+     * By the end of the function, the queue should be in the original order it started in.
+     * It is only to use another queue.
+     * @param {any} value a value to search for in the queue
+     * @returns {boolean} true/false whether the value is in the queue
+     */
+    contains(value) {
         let runner = this.head;
 
         while (runner) {
-            if (runner.data === searchVal) return true;
-
+            if (runner.searchVal === searchVal) return true;
             runner = runner.next;
         }
-
         return false;
     }
 
-    // this method just allows for seed the queue from an array of values
-    // the array.forEach is a functional method which allows us to easily perform an action
-    // for each element in the array
+    // EXTRA
+    /**
+     * Goes through the queue to print out all the values
+     * Bonus: follow the concept of a queue and only use pop and push.
+     * By the end of the function, the queue should be in the original order it started in.
+     * It is only to use another queue.
+     */
+    print() {
+        let runner = this.head;
+        let vals = "";
+
+        while (runner) {
+            vals += `${runner.data}${runner.next ? ", " : ""}`;
+            runner = runner.next;
+        }
+        console.log(vals);
+        return vals;
+    }
+
+    /**
+     * Enqueues each of the given items.
+     * - Time: O(n) linear since enqueue is O(1), n = vals.length.
+     * - Space: O(1) constant.
+     * @param {Array<any>} vals
+     */
     seed(vals) {
-        vals.forEach((val) => this.enqueue(val));
+        vals.forEach((val) => this.enqueue(new Node(val)));
     }
 
     /**
@@ -175,25 +252,36 @@ class Queue {
      * queue methods instead for practice.
      * Use no extra array or objects.
      * The queues should be returned to their original order when done.
+     * - Time: O(?).
+     * - Space: O(?).
      * @param {Queue} q2 The queue to be compared against this queue.
      * @returns {boolean} Whether all the items of the two queues are equal and
      *    in the same order.
      */
     compareQueues(q2) {
-        if (this.size != q2.size) return false
-        let isEqual = true
-        let count = 0
-        while (count < this.size) {
-            let runner1 = this.dequeue()
-            let runner2 = q2.dequeue()
-            if (runner1.data != runner2.data) {
-                isEqual = false
+        if (this.size !== e2.size()) return false;
+
+        let isEqual = true;
+        let len = this.size();
+
+        // the main this with this algo is that, with a queue implementation, the only way
+        // we can access the nodes in the queue is to dequeue the nodes one at a time.
+        // to preserve the original queue order, we therefore enqueue the dequeued node after the comparison
+        for (let i = 0; i < len; i++) {
+            const dequeued1 = this.dequeue();
+            const dequeued2 = q2.dequeue();
+
+            // we set isEqual to false instead of an early exit so that we can finish
+            // setting the queues back to the original order
+            if (dequeued1.data !== dequeued2.data) {
+                isEqual = false;
             }
-            this.enqueue(runner1)
-            q2.enqueue(runner2)
-            count++
+
+            this.enqueue(dequeued1);
+            q2.enqueue(dequeued2);
         }
-        return isEqual
+
+        return isEqual;
     }
 
     /**
@@ -208,21 +296,21 @@ class Queue {
         if (this.isEmpty()) return false;
 
         let isPalin = true;
-        const stack = new Stack();
+        const stack = new SLLStack();
         const len = this.size();
 
         // again, need to dequeue and enqueue to access everything and preserve the original order
         // using a stack means that we can then retrieve the nodes in reverse order
         for (let i = 0; i < len; i++) {
             let dequeued = this.dequeue();
-            stack.pushNode(dequeued);
+            stack.push(dequeued);
 
             this.enqueue(dequeued);
         }
 
         for (let i = 0; i < len; i++) {
             let dequeued = this.dequeue();
-            let popped = stack.popNode();
+            let popped = stack.pop();
 
             if (popped.data !== dequeued.data) {
                 isPalin = false;
@@ -230,12 +318,72 @@ class Queue {
 
             this.enqueue(dequeued);
         }
+
         return isPalin;
+    }
+
+    /**
+     * Determines whether the sum of the left half of the queue items is equal to
+     * the sum of the right half. Avoid indexing the queue items directly via
+     * bracket notation, use the queue methods instead for practice.
+     * Use no extra array or objects.
+     * The queue should be returned to it's original order when done.
+     * @returns {boolean} Whether the sum of the left and right halves is equal.
+     */
+    isSumOfHalvesEqual() {
+        // set necessary variables and instantiate a new SLLStack
+        let sumLeft = 0;
+        let sumRight = 0;
+        let newStack = new SLLStack;
+        // divide size by two
+        let halfSize = this.size / 2;
+        if (halfSize % 2 != 0) return false;
+        // dequeue each node, add the value of each dequeued node to a total add those nodes to a stack
+        for (let i = 0; i < halfSize; i++) {
+            sumRight += this.head.data;
+            newStack.push(this.dequeue())
+        }
+        // add the rest of the nodes left in the queue and add them to the stack
+        for (let i = 0; i < halfSize; i++) {
+            sumLeft += this.head.data;
+            newStack.push(this.dequeue())
+        }
+        // put everything back
+        for (let i = 0; i < newStack.size; i++) {
+            this.enqueue(newStack.pop())
+        }
+        // compare the two totals
+        if (sumLeft === sumRight) return true;
+        else return false;
     }
 }
 
-let newQ = new Queue();
+/**
+ * Class to represent a Queue but is implemented using two stacks to store the
+ * queued items without using any other objects or arrays to store the items.
+ * Retains the FIFO (First in First Out) ordering when adding / removing items.
+ */
+class TwoStackQueue {
+    constructor() {
+        this.stack1 = new Stack();
+        this.stack2 = new Stack();
+    }
+
+    /**
+     * Takes a node and adds it to the top of the queue
+     * @param {Node} newNode the new node that is to be pushed to the back of the queue
+     */
+    enqueue(newNode) { }
+
+    /**
+     * Removes the Node at the front of the queue and returns it
+     * @returns {Node} the node that was removed
+     */
+    dequeue() { }
+}
+
+let newQ = new SLQueue();
+
 newQ.enqueue(2)
-newQ.enqueue(7)
-newQ.enqueue(5)
-console.log(newQ.getSize());
+newQ.enqueue(4)
+console.log(newQ.enqueue(23))
