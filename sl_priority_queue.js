@@ -35,12 +35,48 @@ class SLPriorityQueue {
      * appropriate spot
      * @param {Node} newNode the new node that is to be pushed to the top of the queue
      */
-    enqueue(newNode) { }
+    enqueue(newNode) {
+        enqueue(newNode) {
+            if (this.head == null) {
+                this.head = newNode
+                this.tail = newNode
+                this.size++;
+
+                return this;
+            }
+
+            let runner = this.head;
+            while (runner.next != null && runner.next.priority <= newNode.priority) {
+                runner = runner.next;
+            }
+
+            if (runner.next == null) {
+                this.tail = newNode;
+            }
+
+            newNode.next = runner.next;
+            runner.next = newNode;
+            this.size++;
+
+            return this;
+        }
+    }
 
     /**
      * Removes the Node at the front of the queue and returns it
      * this node would have the highest priority
      * @returns {Node} the node that was removed
      */
-    dequeue() { }
+    dequeue() {
+        if(this.head == null){
+            return null
+        }
+        var pointer = this.head;  
+        this.head = this.head.next;
+        pointer.next = null;
+        this.size--;
+        console.log(this.size)
+
+        return pointer
+    }
 }

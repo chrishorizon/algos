@@ -373,13 +373,52 @@ class TwoStackQueue {
      * Takes a node and adds it to the top of the queue
      * @param {Node} newNode the new node that is to be pushed to the back of the queue
      */
-    enqueue(newNode) { }
+    enqueue(newNode) {
+        this.stack1.push(newNode);
+        return this.stack1.size();
+    }
 
     /**
      * Removes the Node at the front of the queue and returns it
      * @returns {Node} the node that was removed
      */
-    dequeue() { }
+    dequeue() {
+        if (this.stack2.size() === 0) {
+            this.alternateStacks(this.stack1, this.stack2);
+        }
+
+        return this.stack2.pop();
+    }
+
+    /**
+     * Transfers the items from one stack to the other.
+     * - Time: O(n) linear. Push and pop are constant but the loop is not.
+     * - Space: O(1) The items are being moved from one stack to another
+     *    not stored as duplicates.
+     * @param {Stack} start The stack that currently contains the items.
+     * @param {Stack} destination The stack that the items in start need to be
+     *    moved into.
+     * @returns {undefined}
+     */
+    alternateStacks(start, destination) {
+        while (start.size()) {
+            destination.push(start.pop());
+        }
+    }
+
+    /**
+     * Retrieves the first item in the queue without removing it.
+     * - Time: O(n) linear, due to alternateStacks being linear time.
+     * - Space: O(1) The items are being moved from one stack to another
+     *    not stored as duplicates.
+     * @returns {any} The first item in the queue.
+     */
+    peek() {
+        if (this.stack2.size() === 0) {
+            this.alternateStacks(this.stack1, this.stack2);
+        }
+        return this.stack2[this.stack2.size() - 1];
+    }
 }
 
 let newQ = new SLQueue();
