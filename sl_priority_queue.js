@@ -36,30 +36,28 @@ class SLPriorityQueue {
      * @param {Node} newNode the new node that is to be pushed to the top of the queue
      */
     enqueue(newNode) {
-        enqueue(newNode) {
-            if (this.head == null) {
-                this.head = newNode
-                this.tail = newNode
-                this.size++;
-
-                return this;
-            }
-
-            let runner = this.head;
-            while (runner.next != null && runner.next.priority <= newNode.priority) {
-                runner = runner.next;
-            }
-
-            if (runner.next == null) {
-                this.tail = newNode;
-            }
-
-            newNode.next = runner.next;
-            runner.next = newNode;
+        if (this.head == null) {
+            this.head = newNode
+            this.tail = newNode
             this.size++;
 
             return this;
         }
+
+        let runner = this.head;
+        while (runner.next != null && runner.next.priority <= newNode.priority) {
+            runner = runner.next;
+        }
+
+        if (runner.next == null) {
+            this.tail = newNode;
+        }
+
+        newNode.next = runner.next;
+        runner.next = newNode;
+        this.size++;
+
+        return this;
     }
 
     /**
