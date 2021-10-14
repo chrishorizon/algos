@@ -144,26 +144,72 @@ class BinarySearchTree {
     /**
    * Inserts a new node with the given newVal in the right place to preserve
    * the order of this tree.
-   * - Time: O(?).
-   * - Space: O(?).
    * @param {number} newVal The data to be added to a new node.
    * @returns {BinarySearchTree} This tree.
    */
     insert(newVal) {
-        
+        let newNode = new Node(newVal);
+        if (this.isEmpty()) {
+            this.root = newNode;
+            return this;
+        }
+        let runner = this.root;
+        while (true) {
+            if (newNode.data == runner.data){
+                return this;
+            }
+            if (newNode.data < runner.data) {
+                if (runner.left == null) {
+                    runner.left = newNode;
+                    return this;
+                } else {
+                    runner = runner.left;
+                }
+
+            } else {
+                if (runner.right == null) {
+                    runner.right = newNode;
+                    return this;
+                } else {
+                    runner = runner.right;
+                }
+            }
+        }
     }
 
     /**
      * Inserts a new node with the given newVal in the right place to preserve
      * the order of this tree.
-     * - Time: O(?).
-     * - Space: O(?).
      * @param {number} newVal The data to be added to a new node.
      * @param {Node} curr The node that is currently accessed from the tree as
      *    the tree is being traversed.
      * @returns {BinarySearchTree} This tree.
      */
-    insertRecursive(newVal, curr = this.root) { }
+    insertRecursive(newVal, curr = this.root) {
+        if (this.isEmpty()) {
+            this.root = new Node(newVal);
+            return this;
+            }
+        if (curr.data == newVal){
+            return this;
+        }
+        if (curr.left == null && newVal < curr.data){
+            curr.left = new Node(newVal);
+            return this;
+        } 
+        if (curr.right == null && newVal > curr.data){
+            curr.right = new Node(newVal);
+            return this;
+        } 
+        if (newVal < curr.data){
+            this.insertRecursive(newVal, curr.left);
+            return this;
+        } 
+        if (newVal > curr.data){
+            this.insertRecursive(newVal, curr.right);
+            return this;
+        } 
+    }
 
     // Extra
     /**
