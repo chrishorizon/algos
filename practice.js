@@ -87,12 +87,12 @@ for(var i = 1; i <= 100; i++){
 var sample = ["a", "b", 'c', 'd', 'e']
 
 function revArr(arr){
-    let newArr = [];
+    let newArray = [];
     for(let i = arr.length -1; i >= 0; i--){
-        newArr.push(arr[i])
+        newArray.push(arr[i]);
     }
-    return newArr;
+    return newArray;
 }
 
 var newSample = revArr(sample)
-
+console.log(newSample)
