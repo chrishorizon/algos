@@ -381,4 +381,4 @@ fullTree
 
 // fullTree.print();
 
-console.log(fullTree.size());
+console.log(fullTree.isFull());

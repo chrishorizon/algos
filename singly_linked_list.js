@@ -327,7 +327,7 @@ class SinglyLinkedList {
      * @returns {SinglyLinkedList} This list with the added nodes.
      */
     concat(addList) {
-        if(this.emptyList()){
+        if(this.isEmpty()){
             return null;
         }
         let runner = this.head;
@@ -365,7 +365,6 @@ class SinglyLinkedList {
         return this.head
     }
 
-    // EXTRA
     /**
      * Splits this list into two lists where the 2nd list starts with the node
      * that has the given value.
@@ -399,6 +398,51 @@ class SinglyLinkedList {
             runner = runner.next;
         }
         return newList;
+    }
+
+    /**
+     * Reverses this list in-place without using any extra lists.
+     * @returns {SinglyLinkedList} This list.
+     */
+    reverse() {
+        if (this.isEmpty()) return null;
+
+        if (this.head.next == null) {
+            return false;
+        }
+        let walker = this.head;
+        let runner = this.head.next;
+
+        while (runner.next != null) {
+            if (walker == runner) {
+                return true;
+            }
+            walker = walker.next;
+            runner = runner.next.next;
+        }
+        return false;
+    }
+
+    /**
+     * Determines whether the list has a loop in it which would result in
+     * infinitely traversing unless otherwise avoided. A loop is when a node's
+     * next points to a node that is behind it.
+     * @returns {boolean} Whether the list has a loop or not.
+     */
+    hasLoop() {
+        let prev = null;
+        let current = this.head;
+        let next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+
+        return this;
     }
 
 }
