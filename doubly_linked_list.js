@@ -117,8 +117,6 @@ class DoublyLinkedList {
 
     /**
      * Removes the middle node in this list.
-     * - Time: O(?).
-     * - Space: O(?).
      * @returns {any} The data of the removed node.
      */
     removeMiddleNode() {
@@ -144,6 +142,76 @@ class DoublyLinkedList {
 
         return data;
     }
+
+    /**
+ * Inserts a new node with the given newVal after the node that has the
+ * given targetVal as it's data.
+ * @param {any} targetVal The node data to find.
+ * @param {any} newVal Data for the new node.
+ * @returns {boolean} Indicates if the new node was added.
+ */
+    insertAfter(targetVal, newVal) {
+        if (this.isEmpty()) return false;
+        if (this.isEmpty()) {
+            return false;
+        }
+        let runner = this.head;
+        while (runner != null) {
+            if (runner.data == targetVal) {
+                let newNode = new Node(newVal);
+                let after = runner.next;
+                runner.next = newNode;
+                newNode.next = after;
+                newNode.prev = runner;
+                if (after != null) {
+                    after.prev = newNode;
+                } else {
+                    this.tail = newNode;
+                }
+                return true;
+            }
+            runner = runner.next;
+        }
+        return false;
+    }
+
+    /**
+     * Inserts a new node with the given newVal before the node that has the
+     * given targetVal as it's data.
+     * @param {any} targetVal The node data to find.
+     * @param {any} newVal Data for the new node.
+     * @returns {boolean} Indicates if the new node was added.
+     */
+    insertBefore(targetVal, newVal) {
+        // check for an empty list
+        if (this.isEmpty()) return false
+
+        //check value of head and call insertAtFront()
+        if (targetVal == this.head.data) {
+            this.insertAtFront(newVal)
+            return true
+        }
+        // instantiate a new Node
+        let newNode = new Node(newVal)
+
+        // declare a runner 
+        let runner = this.head
+
+        // main logic 
+        while (runner != null) {
+            if (runner.data == targetVal) {
+                newNode.prev = runner.prev
+                newNode.next = runner
+                runner.prev.next = newNode
+                runner.prev = newNode
+                return true
+            }
+            runner = runner.next
+        }
+        // final return
+        return false
+    }
+
 }
 
 const emptyList = new DoublyLinkedList();
