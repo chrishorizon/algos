@@ -18,16 +18,6 @@ function reverseArr(array){
 }
 console.log(reverseArr(arr))
 
-// Reverse an array and string
-var arr1 = [1, 2, 3, 4, 5];
-var strng = "Chris";
-
-function revStr(str){
-    return str.split('').reverse().join('')
-}
-
-console.log(revStr(strng))
-
 var newArr1 = arr1.reverse();
 
 console.log(newArr1)
