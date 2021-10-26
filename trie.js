@@ -61,6 +61,25 @@ class Trie {
         return runner;
     }
 
+    // Recursive call to get the word completions
+    getCompletions(prepend = "", branchString = "", node = this.root, completions = []) {
+        if (node.isEndOfWord) {
+            completions.push(prepend + branchString);
+        }
+
+        // BASE CASE
+        // this prevents the function from running infinitely
+        if (!node.children) {
+            return completions;
+        }
+
+        // looping through the keys of a given node's .children
+        for (const character in node.children) {
+            this.getCompletions(prepend, branchString + node.children[character].character, node.children[character], completions);
+        }
+
+        return completions;
+    }
 }
 
 let searchHistory = new Trie();
