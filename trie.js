@@ -37,6 +37,19 @@ class Trie {
         return this
     }
 
+    /**
+     * Returns an array with any complete words beginning
+     * with the given starting substring.
+     * @returns {array} of strings
+     */
+    autoComplete(startingSubstring) {
+        // TIP: separating logic into separate helper functions may help figuring this out and help code readability
+        let startNode = this.getLastOfSubstring(startingSubstring);
+
+        return this.getCompletions(startingSubtring, "", startNode);
+    }
+
+
 }
 
 let searchHistory = new Trie();
