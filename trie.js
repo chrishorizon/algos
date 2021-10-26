@@ -24,18 +24,19 @@ class Trie {
      * @param {string} word Word that is being added to the Trie
      * @returns {boolean} true/false status of adding the word
      */
-    add(word) { }
+    add(word) {
+        let node = this.root; // runner / current
 
-    /**
-     * Returns an array with any complete words beginning
-     * with the given starting substring.
-     * - Time: O(?)
-     * - Space: O(?)
-     * @returns {array} of strings
-     */
-    autoComplete(startingSubstring) {
-        // TIP: separating logic into separate helper functions may help figuring this out and help code readability
+        for (const character of word) {
+            if (!node.children.hasOwnProperty(character)) {
+                node.children[character] = new TrieNode(character);
+            }
+            node = node.children[character];
+        }
+        node.isEndOfWord = true;
+        return this
     }
+
 }
 
 let searchHistory = new Trie();
