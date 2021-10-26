@@ -49,6 +49,17 @@ class Trie {
         return this.getCompletions(startingSubtring, "", startNode);
     }
 
+    // Finds the last character node of the given substring
+    getLastOfSubstring(substring) {
+        let runner = this.root;
+
+        for (const character of substring) {
+            if (runner.children.hasOwnProperty(character)) {
+                runner = runner.children[character];
+            }
+        }
+        return runner;
+    }
 
 }
 
