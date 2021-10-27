@@ -55,11 +55,13 @@ var revTestOne = revStr(testOne)
 console.log(revTestOne)
 
 
-for(var i = 1; i <= 100; i++){
+let i = 1;
+while(i != 101){
     if(i % 15 == 0) console.log("Fizzbuzz")
     else if(i % 5 == 0) console.log("Buzz")
     else if(i % 3 == 0) console.log("Fizz")
     else console.log(i)
+    i++;
 }
 
 var sample = ["a", "b", 'c', 'd', 'e']
