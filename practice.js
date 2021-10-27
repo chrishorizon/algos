@@ -56,11 +56,16 @@ for(var i = 1; i <= 100; i++){
 var testOne = "abcdefg";
 
 function revStr(str){
-    let newStr = "";
-    for(var i = str.length -1; i >= 0; i--){
-        newStr += "(" + str[i] + ") "
+    // initialize an empty string variable
+    let revStr = "";
+
+    // loop through data from tail to head
+    for(let i = str.length -1; i >= 0; i--) {
+        // add each character to the variable
+        revStr += str[i];
     }
-    return newStr;
+    // return variable
+    return revStr;
 }
 
 var revTestOne = revStr(testOne)
