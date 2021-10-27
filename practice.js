@@ -18,23 +18,6 @@ function reverseArr(array){
 }
 console.log(reverseArr(arr))
 
-var newArr1 = arr1.reverse();
-
-console.log(newArr1)
-
-var arr2 = [1, 2, 3, 4, 5, 8, 10, 20, 50, 100];
-
-function revArr1(arr){
-    let chars = [];
-    for(var i = arr.length -1; i >= 0; i--){
-        chars.push(arr[i])
-    }
-    return chars;
-}
-
-console.log(revArr1(arr2))
-
-
 for(var i=1; i <= 100; i++){
     if(i % 15 == 0){
         console.log('FizzBuzz');
