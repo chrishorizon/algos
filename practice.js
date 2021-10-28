@@ -81,9 +81,59 @@ console.log(newSample)
 
 // Create a class to construct a new node instance
 class Node {
-    constructor(data) {
+    constructor(data){
         this.data = data;
         this.next = null;
     }
 }
 
+// Create singly linked list class
+class SinglyLinkedList {
+    // constructs a new instance of an empty linked list that inherits all the methods
+    constructor(){
+        this.head = null;
+    }
+
+    isEmpty(){
+        // return this.head === null;
+        return !this.head;
+    }
+
+    toArr(){
+        const arr = [];
+        let runner = this.head;
+
+        while(runner){
+            arr.push(runner.data);
+            runner = runner.next;
+        }
+        return arr;
+    }
+
+    insertAtBack(data){
+        // create a new node
+        let newNode = new Node(data);
+
+        // check if empty
+        if(this.isEmpty()){
+            this.head = newNode;
+        } else {
+            // create a runner
+            let runner = this.head;
+            // loop through list
+            while(runner.next != null){
+                runner = runner.next;
+            }
+            // assign runner.next to new node
+            runner.next = newNode;
+        }
+        return this;        
+    }
+
+}
+
+let listIsEmpty = new SinglyLinkedList();
+let testList = new SinglyLinkedList().insertAtBack(5);
+
+// console.log(listIsEmpty.isEmpty());
+console.log(testList.isEmpty());
