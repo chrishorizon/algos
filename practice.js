@@ -76,3 +76,14 @@ function revArr(arr){
 
 var newSample = revArr(sample)
 console.log(newSample)
+
+// Singly Linked List ===========
+
+// Create a class to construct a new node instance
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
