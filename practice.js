@@ -142,10 +142,20 @@ class SinglyLinkedList {
         return this;
     }
 
+    removeHead(){
+        // check if empty
+        if(this.isEmpty()) return null;
+
+        // move head pointer to head.next
+        this.head = this.head.next;
+        return this;
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
-let testList = new SinglyLinkedList().insertAtBack(5);
+let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtFront(2).removeHead();
 
 // console.log(listIsEmpty.isEmpty());
-console.log(testList.isEmpty());
+// console.log(testList.isEmpty());
+console.log(testList.toArr());
