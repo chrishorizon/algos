@@ -131,7 +131,15 @@ class SinglyLinkedList {
     }
 
     insertAtFront(data) {
-        
+        let firstNode = new Node(data);
+
+        if(this.isEmpty()){
+            this.head = newNode;
+        } else {
+            firstNode.next = this.head;
+            this.head = firstNode;
+        }
+        return this;
     }
 
 }
