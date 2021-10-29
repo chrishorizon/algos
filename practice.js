@@ -130,6 +130,10 @@ class SinglyLinkedList {
         return this;        
     }
 
+    insertAtFront(data) {
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
