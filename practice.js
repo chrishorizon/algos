@@ -152,7 +152,17 @@ class SinglyLinkedList {
     }
 
     average(){
-        
+        if(this.isEmpty()) return null;
+
+        let runner = this.head;
+        let value = 0;
+        let count = 0;
+        while(runner != null){
+            value += runner.data;
+            count++;
+            runner = runner.next;
+        }
+        return value / count;
     }
 
 }
@@ -162,4 +172,5 @@ let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtF
 
 // console.log(listIsEmpty.isEmpty());
 // console.log(testList.isEmpty());
-console.log(testList.toArr());
+// console.log(testList.toArr());
+console.log(testList.average());
