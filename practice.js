@@ -151,6 +151,10 @@ class SinglyLinkedList {
         return this;
     }
 
+    average(){
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
