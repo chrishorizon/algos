@@ -165,6 +165,10 @@ class SinglyLinkedList {
         return value / count;
     }
 
+    removeBack(){
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
