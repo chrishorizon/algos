@@ -204,8 +204,18 @@ class SinglyLinkedList {
         return false;
     }
 
-    containsRecursive(val) {
-        
+    // Recursively determine wheter or not the given search value exists on the list
+    containsRecursive(val, current = this.head) {
+        // check if current matches value
+        if(current.data == val){
+            // if value exists, return true
+            return true;
+        } else if(current.next == null){
+            // else if return false if current is at the end of the list
+            return false;
+        }
+        // return function
+        return this.containsRecursive(val, current.next);
     }
 
 }
@@ -217,4 +227,4 @@ let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtB
 // console.log(testList.isEmpty());
 // console.log(testList.toArr());
 // console.log(testList.average());
-console.log(testList.contains(3));
+console.log(testList.containsRecursive(10, testList));
