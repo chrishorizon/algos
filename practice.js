@@ -185,16 +185,32 @@ class SinglyLinkedList {
 
     // Determines whether or not the given search value exists in this list.
     contains(val){
-        
+        if(this.isEmpty()) return false;
+
+        // create runner variable
+        let runner = this.head;
+        // loop through list
+        while(runner != null){
+        // check if value of runner matches value passed in the parameter 
+            if(runner.data == val){
+                // if it exists, we're done
+                return true;
+            } else {
+                // if it does not exist, move runner down the list
+                runner = runner.next;
+            }
+        }
+        // if we're here, every node was checked and val did not exists
+        return false;
     }
 
 }
 
 let listIsEmpty = new SinglyLinkedList();
-let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtBack(2).removeBack();
+let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtBack(2);
 
 // console.log(listIsEmpty.isEmpty());
 // console.log(testList.isEmpty());
 // console.log(testList.toArr());
 // console.log(testList.average());
-console.log(testList.toArr());
+console.log(testList.contains(3));
