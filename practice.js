@@ -166,15 +166,30 @@ class SinglyLinkedList {
     }
 
     removeBack(){
-        
+        // edge case - check if list is empty
+        if(this.isEmpty()) return null;
+
+        // create runner variables
+        let runner = this.head;
+        // loop through list and stop at second to last node
+        while(runner.next.next != null){
+            runner = runner.next;
+        }
+        // initialize a new variable to equal null
+        // let removed = runner.next;
+        runner.next = null;
+        // to return removed node data, use line 182
+        // return removed.data;
+        return this;
     }
 
 }
 
 let listIsEmpty = new SinglyLinkedList();
-let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtFront(2).removeHead();
+let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtBack(2).removeBack();
 
 // console.log(listIsEmpty.isEmpty());
 // console.log(testList.isEmpty());
 // console.log(testList.toArr());
-console.log(testList.average());
+// console.log(testList.average());
+console.log(testList.toArr());
