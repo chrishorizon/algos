@@ -183,6 +183,11 @@ class SinglyLinkedList {
         return this;
     }
 
+    // Determines whether or not the given search value exists in this list.
+    contains(val){
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
