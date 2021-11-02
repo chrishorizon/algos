@@ -204,6 +204,10 @@ class SinglyLinkedList {
         return false;
     }
 
+    containsRecursive(val) {
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
