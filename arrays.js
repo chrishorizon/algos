@@ -283,7 +283,7 @@ console.log(findConsqSums(nums2, 16))
 */
 
 const nums1 = [2, 11, 7, 15];
-const targetSum1 = 9;
+const targetSum1 = 17;
 
 // Order doesn't matter. Explanation: nums[0] + nums[2] = 2 + 7 = 9
 const expected1 = [0, 2];
@@ -314,7 +314,7 @@ function twoSum2(nums, targetSum) {
     }
 }
 
-console.log(twoSum2(nums1, 17))
+console.log(twoSum2(nums1, targetSum1))
 
 // From a technical interview with an AWS engineer: https://youtu.be/t0OQAD5gjd8
 
