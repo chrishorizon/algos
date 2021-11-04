@@ -220,7 +220,10 @@ class SinglyLinkedList {
 
     // Recursively finds the maximum integer data of the nodes in this list.
     recursiveMax(runner = this.head, maxNode = this.head){
-        
+        if(this.head === null) return null;
+        if(runner === null) return maxNode.data;
+        if(runner.data > maxNode.data) maxNode = runner;
+        return this.recursiveMax(runner.next, maxNode);
     }
 
 }
@@ -232,4 +235,4 @@ let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtB
 // console.log(testList.isEmpty());
 // console.log(testList.toArr());
 // console.log(testList.average());
-console.log(testList.containsRecursive(10, testList));
+console.log(testList.recursiveMax());
