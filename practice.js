@@ -218,6 +218,11 @@ class SinglyLinkedList {
         return this.containsRecursive(val, current.next);
     }
 
+    // Recursively finds the maximum integer data of the nodes in this list.
+    recursiveMax(runner = this.head, maxNode = this.head){
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
