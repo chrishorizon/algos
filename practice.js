@@ -227,16 +227,25 @@ class SinglyLinkedList {
     }
 
     secondToLast() {
-        
+        if(this.head == null || this.head.next == null) return null;
+
+        // initialize a variable to this.head
+        let runner = this.head;
+        // loop through list and stop at second to last
+        while(runner.next.next != null) {
+            runner = runner.next;
+        }
+        // then return the runner data
+        return runner.data;
     }
 
 }
 
 let listIsEmpty = new SinglyLinkedList();
-let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtBack(2);
+let testList = new SinglyLinkedList().insertAtBack(5).insertAtBack(10).insertAtBack(2).insertAtBack(11);
 
 // console.log(listIsEmpty.isEmpty());
 // console.log(testList.isEmpty());
 // console.log(testList.toArr());
 // console.log(testList.average());
-console.log(testList.recursiveMax());
+console.log(testList.secondToLast());
