@@ -226,6 +226,10 @@ class SinglyLinkedList {
         return this.recursiveMax(runner.next, maxNode);
     }
 
+    secondToLast() {
+        
+    }
+
 }
 
 let listIsEmpty = new SinglyLinkedList();
