@@ -31,6 +31,16 @@ let test1 = [2, 5, 7, 10, 3, 2]
 let test2 = [2, 5, 7, 10, 3]
 
 var containsDuplicate = function(nums) {
+    // sort nums
+    nums.sort();
+
+    // loop through nums
+    for(let i=0; i < nums.length-1; i++){
+        // return true if 2 consecutive numbers are the same
+        if(nums[i] === nums[i + 1]) return true;
+    }
+    // if loop ends, return false
+    return false;
 };
 
 console.log(containsDuplicate(test1));
