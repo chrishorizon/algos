@@ -20,5 +20,17 @@ function twoSum(nums, target){
         }
     }
 }
-
 console.log(twoSum(newArr, tar));
+
+
+// ======= Contains Duplicate =====================
+// Given an integer array nums, return true if any value appears at least twice in
+// the array, and return false if every element is distinct.
+
+let test1 = [2, 5, 7, 10, 3, 2]
+let test2 = [2, 5, 7, 10, 3]
+
+var containsDuplicate = function(nums) {
+};
+
+console.log(containsDuplicate(test1));
