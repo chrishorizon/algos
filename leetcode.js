@@ -49,6 +49,26 @@ console.log(containsDuplicate(test1));
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
+let prices = [7,1,5,3,6,4]
+
 var maxProfit = function(prices) {
-    
+    // initialize variables for bottom and profit
+    let bottom = prices[0];
+    let profit = 0;
+
+    // loop though array
+    for(let i=0; i < prices.length; i++){
+        // if bottom is less than prices[i], set index to bottom variable
+        if(bottom > prices[i]){
+            bottom = prices[i];
+        }
+        // if prices[i] - bottom is greater than profit, set it to profit variable
+        if(profit < prices[i] - bottom){
+            profit = prices[i] - bottom;
+        }
+    }
+    // return profit variable
+    return profit;
 };
+
+console.log(maxProfit(prices));
