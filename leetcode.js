@@ -83,19 +83,29 @@ console.log(maxProfit(prices));
  * @return {number}
  */
 
-var maxArea = function(height) {
-    let maxArea = 0;
-    let left = 0;
-    let right = height.length -1;
+var waterLevel = [3, 5, 1, 10, 6]
 
+// O(n)
+function maxArea2(height) {
+    // initialize 2 variables, left and right - O(1)
+    let left = 0;
+    let right = height.length - 1;
+
+    // intialize variable to hold the maxArea - O(1)
+    let maxArea = 0;
+
+    // while left is less than right - O(n)
     while(left < right){
+        // initialize variable with current area
         let min = (right - left) * Math.min(height[left], height[right]);
+        // assign max area to maxArea variable
         maxArea = Math.max(min, maxArea);
-        if(height[left] < height[right]){
-            left++;
-        } else {
-            right--;
-        }
+        
+        // if left value is less that right value, increment left, else decrement right
+        height[left] < height[right] ? left++ : right--;
     }
+    // return maxArea variable
     return maxArea;
-};
+}
+
+console.log(maxArea2(waterLevel));
