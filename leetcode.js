@@ -107,5 +107,60 @@ function maxArea2(height) {
     // return maxArea variable
     return maxArea;
 }
-
 console.log(maxArea2(waterLevel));
+
+
+// ====== 3Sum ===================
+// Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that
+// i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+// Notice that the solution set must not contain duplicate triplets.
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+let num = [-1,0,1,2,-1,-4]
+
+var threeSum = function(nums) {
+    // edge case
+    let res = [];
+    if(nums === null || nums.length < 3) return res;
+
+    // sort array
+    nums.sort((a,b) => a-b);
+
+    // initialize const variable with zero value
+    const zero = 0;
+
+    // loop through array
+    for(let i=0; i < nums.length-2; i++){
+        // check condition if nums[i] === nums[i-1] continue
+        if(nums[i] === nums[i-1]) continue;
+        const target = zero - nums[i];
+        // initialize two pointers to start on both ends after i
+        let left = i+1;
+        let right = nums.length-1;
+
+        // loop while left is less than right until they meet
+        while(left < right){
+            // initialize left plus right on const variable
+            let sum = nums[left] + nums[right];
+            // check condition if sum === target
+            if(sum === target){
+                // push left, right and nums index
+                res.push([nums[i], nums[left], nums[right]]);
+                // move left and right index if subsequent value is === to current
+                while(nums[left] === nums[left+1]) left++;
+                while(nums[right] === nums[right-1]) right++;
+                // move left and right index 
+                left++;
+                right++;
+            } else if(sum < target){
+                left++;
+            } else right--;
+        }
+    }
+    return res;
+};
+
+console.log(threeSum(num));
