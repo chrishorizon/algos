@@ -175,10 +175,32 @@ console.log(threeSum(num));
  * @return {number[]}
  */
 
+let num = [1,2,3,4];
+
 var productExceptSelf = function(nums) {
     // edge cases
-    if(nums == null || nums.length == 1) return null;
+    // if(nums == null || nums.length < 3) return null;
 
-    
+    // initialize empty array
+    let res = [];
 
+    // loop through nums array
+    for(let i=0, left = 1; i < nums.length; i++){
+        // push to res variable
+        res.push(left);
+        // left times current index
+        left *= nums[i];
+    }
+    // loop from right to left
+    for (let i = nums.length -1, right = 1; i >= 0; i--){
+        // multiply values in res variable with right current index
+        res[i] *= right;
+        // multiply right with nums index
+        right *= nums[i];
+    }
+
+    // return result
+    return res;
 };
+
+console.log(productExceptSelf(num));
