@@ -214,6 +214,21 @@ console.log(productExceptSelf(num));
  * @return {number}
  */
 
- var maxSubArray = function(nums) {
-    
+let nums = [-2,1,-3,4,-1,2,1,-5,4];
+
+var maxSubArray = function(nums) {
+    // initialize two variables, one to hold max and one to hold current index
+    let maxCount = nums[0];
+    let curr = nums[0];
+
+    // loop through array
+    for(let i=1; i < nums.length; i++){
+        // assign Math.max to max variable with max + nums[i], nums[i]
+        maxCount = Math.max(maxCount + nums[i], nums[i])
+        // assign Math.max to current var with max, current
+        curr = Math.max(maxCount, curr);
+    }
+    // return max variable
+    return curr;
 };
+console.log(maxSubArray(nums));
