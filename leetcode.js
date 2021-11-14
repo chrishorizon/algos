@@ -232,3 +232,18 @@ var maxSubArray = function(nums) {
     return curr;
 };
 console.log(maxSubArray(nums));
+
+
+// ===== Find Minimum in Rotated Sorted Array ============
+// Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+let numArr = [4,5,6,7,0,1,2];
+
+var findMin = function(nums) {
+};
+
+console.log(findMin(numArr));
