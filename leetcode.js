@@ -236,6 +236,7 @@ console.log(maxSubArray(nums));
 
 // ===== Find Minimum in Rotated Sorted Array ============
 // Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+// You must write an algorithm that runs in O(log n) time.
 /**
  * @param {number[]} nums
  * @return {number}
@@ -244,6 +245,18 @@ console.log(maxSubArray(nums));
 let numArr = [4,5,6,7,0,1,2];
 
 var findMin = function(nums) {
+    // edge case if array equals 1, return array
+
+    // we need run a binary search to run algorithm in 0(log n)
+    // initialize variable left at start of array and right var at end of the array
+    
+    // loop while left is less than right
+
+        // initialize mid variable
+
+        // if nums[mid] is greater than nums[right], assign left = mid+1, else assign right = mid
+
+    // return nums[left]
 };
 
 console.log(findMin(numArr));
