@@ -244,19 +244,25 @@ console.log(maxSubArray(nums));
 
 let numArr = [4,5,6,7,0,1,2];
 
+// O(log n) binary search
 var findMin = function(nums) {
-    // edge case if array equals 1, return array
+    // edge case if array equals 1 or null, return array
+    if(nums.length === 1) return nums[0];
 
     // we need run a binary search to run algorithm in 0(log n)
     // initialize variable left at start of array and right var at end of the array
+    let left = 0;
+    let right = nums.length -1;
     
     // loop while left is less than right
-
+    while(left < right) {
         // initialize mid variable
+        let mid = left + Math.floor((right - left) / 2);
 
-        // if nums[mid] is greater than nums[right], assign left = mid+1, else assign right = mid
-
-    // return nums[left]
+        // if nums[mid] value is greater than nums[right] value, assign left = mid+1, else assign right = mid
+        nums[mid] > nums[right] ? left = mid + 1 : right = mid;
+    }
+    // return value of nums[left]
+    return nums[left];
 };
-
 console.log(findMin(numArr));
