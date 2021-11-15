@@ -284,25 +284,31 @@ var search = function(nums, target) {
     // initialize two variables, left at start of array and right at end of the array
     let left = 0;
     let right = nums.length-1; // currently index 6
+
+    // initialize two variables with the values of the left and right index
     let leftVal = nums[left]; // currently value 4
     let rightVal = nums[right]; // currently value 2
 
     // loop while left is less than right
     while (left <= right) {
         // initialize mid variable
-        let mid = left + Math.floor(right - left) / 2; // index 3 (value 7)
+        let mid = left + Math.floor((right - left) / 2); // index 3 (value 7)
         // if nums[mid] equals target, return mid
         if(nums[mid] === target) return mid; // mid holds the index, not the value
-        // determine which side of the array is sorted by comparing mid to left
-        if(mid >= left) {
-            // if target is less than mid and greater than left, assign mid-1 to right, else mid+1 to left
-            
+
+        // determine which side of the array is sorted by comparing mid value to left value
+        if(nums[mid] >= leftVal) {
+            // if target is less than mid and greater than left, move right one down from mid, else move left one up from mid
+            target >= leftVal && target < nums[mid] ? right = mid - 1 : left = mid +1;
+        } else {
+            // else, if target is greater than mid and less than right, move left one up from mid, else move right one down from mid
+            target <= rightVal && target > nums[mid] ? left = mid + 1 : right = mid - 1;
         }
-            // else, if target is greater than mid and less than right, assign mid+1 to left, else mid-1 to right
-        
     }
-    // if loop ends, return -1
+    // if loop ends, the target value did not equal nums[mid] value so return -1
+    return -1;
 };
+console.log(search(numsArr, 0));
 
 // input: [3,4,5,0,1,2], 1
 // output: 4
