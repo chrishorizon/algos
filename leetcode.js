@@ -310,8 +310,14 @@ var search = function(nums, target) {
 };
 console.log(search(numsArr, 0));
 
-// input: [3,4,5,0,1,2], 1
-// output: 4
 
-// input: [3,4,5,0,1,2], 10
-// output: -1
+// ===== Sum of Two Integers ===========
+// Given two integers a and b, return the sum of the two integers without using the operators + and -.
+/**
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+var getSum = function(a, b) {
+    
+};
