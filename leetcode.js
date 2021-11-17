@@ -326,3 +326,20 @@ var getSum = function(a, b) {
 };
 
 console.log(getSum(t, e));
+
+
+// ===== Maximum Product Subarray ========
+// Given an integer array nums, find a contiguous non-empty subarray within the array that has the largest product, and return the product.
+// It is guaranteed that the answer will fit in a 32-bit integer.
+// A subarray is a contiguous subsequence of the array.
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+let num = [2,3,-2,4];
+
+var maxProduct = function(nums) {
+    
+};
+
+console.log(maxProduct(num));
