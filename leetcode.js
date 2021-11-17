@@ -336,10 +336,28 @@ console.log(getSum(t, e));
  * @param {number[]} nums
  * @return {number}
  */
-let num = [2,3,-2,4];
+let num = [-2,3,-4];
 
+// O(n)
 var maxProduct = function(nums) {
-    
+    // initialize three variables, currVar will hold the running current product and maxCount contains the largest product
+    let min = nums[0]
+    let max = nums[0];
+    let product = nums[0]; // holds the largest
+
+    // loop through array and start at index 1
+    for(let i=1; i < nums.length; i++){
+
+        let min1 = min * nums[i];
+		let max1 = max * nums[i];
+        
+        min = Math.min(Math.min(min1, nums[i]), max1);
+        max = Math.max(Math.max(min1, nums[i]), max1);
+        
+        product = Math.max(product, max); // assign max value to product variable
+    }
+    // return maxCount;
+    return product;
 };
 
 console.log(maxProduct(num));
