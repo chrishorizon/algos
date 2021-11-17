@@ -318,6 +318,11 @@ console.log(search(numsArr, 0));
  * @param {number} b
  * @return {number}
  */
+let t = 1;
+let e = 4;
+
 var getSum = function(a, b) {
-    
+    return a - -b;
 };
+
+console.log(getSum(t, e));
