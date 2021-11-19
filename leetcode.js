@@ -369,8 +369,15 @@ console.log(maxProduct(num));
  * @return {number}
  */
 
-let n = 00000000000000000000000000001011;
+let bin = 00000000000000000000000000001011;
 
 var hammingWeight = function(n) {
-    
+    let sum = 0;
+
+    while(n != 0) {
+        n = n & (n - 1);
+        sum++;
+    }
+    return sum;
 };
+console.log(hammingWeight(bin));
