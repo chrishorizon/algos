@@ -728,6 +728,9 @@ const expected5 = false;
  * @returns {boolean}
  */
 
+const strA4 = "hello";
+const strB4 = "lllheo";
+
 function canBuildS1FromS2(s1, s2) {
     s1 = s1.toLowerCase()
     s2 = s2.toLowerCase()
@@ -735,11 +738,11 @@ function canBuildS1FromS2(s1, s2) {
     let chars2 = s2.split("")
     for (let i = 0; i < chars1.length; i++) {
         if (chars2.includes(chars1[i])) {
-            let idx = chars2.indexOf(chars1[i])
-            chars2.splice(idx, 1)
+            let idx = chars2.indexOf(chars1[i]);
+            chars2.splice(idx, 1);
+            console.log(chars2);
         } else return false
     }
     return true
 }
-
 console.log(canBuildS1FromS2(strA4, strB4))

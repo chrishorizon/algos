@@ -381,3 +381,46 @@ var hammingWeight = function(n) {
     return sum;
 };
 console.log(hammingWeight(bin));
+
+
+// ======== Valid Anagram ==========================
+// Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+
+let an = "anagram";
+let na = "nagaram";
+
+var isAnagram = function(s, t) {
+    // edge case, if lengths are not equal return false
+    if(s.length !== t.length) return false;
+
+    // initialize two variables, split strings for both arguments
+    let str1 = s.split("");
+    let str2 = t.split("");
+
+    // loop through each element
+    for(let i=0; i < str1.length; i++){
+        // check if t includes s, else return false
+        if(str2.includes(str1[i])){
+            // initialize idx variable with indexOf method
+            let idx = str2.indexOf(str1[i]);
+            // splice t with idx variable
+            str2.splice(idx, 1);
+        } else return false;
+    }
+    // if loop ends, str2 did contain all elements from str1
+    return true;
+};
+console.log(isAnagram(an, na));
+
+// Valid Anagram v2
+let an = "anagram";
+let na = "nagaram";
+var isAnagram2 = function(s, t) {
+    return s.split("").sort().join("") === t.split("").sort().join("");
+};
+console.log(isAnagram2(an, na));
