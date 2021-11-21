@@ -440,6 +440,13 @@ console.log(isAnagram2(an, na));
 let s = "ADOBECODEBANC", t = "ABC";
 
 var minWindow = function(s, t) {
+    // initialize two variables for s and t lengths
+    let sm = s.length;
+    let tn = t.length;
+
+    if(sm < tn) return ""; // this returns empty if t is a larger window
+
     
+
 };
 console.log(minWindow(s, t));
