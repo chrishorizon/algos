@@ -426,27 +426,20 @@ var isAnagram2 = function(s, t) {
 console.log(isAnagram2(an, na));
 
 
-// ====== Minimum Window Substring =================
-// Given two strings s and t of lengths m and n respectively, return the minimum window substring of
-// s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
-// The testcases will be generated such that the answer is unique.
-// A substring is a contiguous sequence of characters within the string.
+// ====== Valid Parentheses ======================================
+// Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+// An input string is valid if:
+//      Open brackets must be closed by the same type of brackets.
+//      Open brackets must be closed in the correct order.
 /**
  * @param {string} s
- * @param {string} t
- * @return {string}
+ * @return {boolean}
  */
 
-let s = "ADOBECODEBANC", t = "ABC";
+let strParTrue = "()";
+let strParFalse = "(]";
 
-var minWindow = function(s, t) {
-    // initialize two variables for s and t lengths
-    let sm = s.length;
-    let tn = t.length;
-
-    if(sm < tn) return ""; // this returns empty if t is a larger window
-
+var isValid = function(s) {
     
-
 };
-console.log(minWindow(s, t));
+console.log(isValid(strParTrue));
