@@ -440,18 +440,18 @@ let strParTrue = "()";
 let strParFalse = "(]";
 
 var isValid = function(s) {
-    const map = { '(': ')', '{': '}', '[': ']'};
-    const stack = [''];
-    for(const char of s){
-        const opening = map[char];
-        if(opening){
-            stack.push(char);
-            continue;
+    // initialize an empty array
+    let sym = [];
+
+    // loop through string argument
+    for(let i=0; i < s.length; i++) {
+        if(s.charAt(i) == "(") sym.push(")");
+        else if(s.charAt(i) == "{") sym.push("}");
+        else if(s.charAt(i) == "[") sym.push("]");
+        else {
+            if(sym.length == 0 || sym.pop() != s.charAt(i)) return false;
         }
-        const peek = stack[stack.length - 1];
-        if(map[peek] !== char) return false;
-        stack.pop();
     }
-    return stack.length === 1;
+    return sym.length == 0 ? true : false;
 };
 console.log(isValid(strParFalse));
