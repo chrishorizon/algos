@@ -442,4 +442,4 @@ let strParFalse = "(]";
 var isValid = function(s) {
     
 };
-console.log(isValid(strParTrue));
+console.log(isValid(strParFalse));
