@@ -440,6 +440,18 @@ let strParTrue = "()";
 let strParFalse = "(]";
 
 var isValid = function(s) {
-    
+    const map = { '(': ')', '{': '}', '[': ']'};
+    const stack = [''];
+    for(const char of s){
+        const opening = map[char];
+        if(opening){
+            stack.push(char);
+            continue;
+        }
+        const peek = stack[stack.length - 1];
+        if(map[peek] !== char) return false;
+        stack.pop();
+    }
+    return stack.length === 1;
 };
 console.log(isValid(strParFalse));
