@@ -445,13 +445,42 @@ var isValid = function(s) {
 
     // loop through string argument
     for(let i=0; i < s.length; i++) {
-        if(s.charAt(i) == "(") sym.push(")");
-        else if(s.charAt(i) == "{") sym.push("}");
-        else if(s.charAt(i) == "[") sym.push("]");
-        else {
-            if(sym.length == 0 || sym.pop() != s.charAt(i)) return false;
+        switch(s[i]) {
+            case "(": sym.push(")");
+                break;
+            case "{": sym.push("}");
+                break;
+            case "[": sym.push("]");
+                break;
+            default:
+                if(s[i] !==  sym.pop()){
+                    return false;
+                }
         }
     }
-    return sym.length == 0 ? true : false;
+    return !sym.length;
 };
-console.log(isValid(strParFalse));
+console.log(isValid(strParTrue));
+
+// Version 2
+let strParTrue = "()";
+let strParFalse = "(]";
+
+var isValid2 = function(s) {
+    let sym = [];
+    let obj = {
+        '(':')',
+        '{':'}',
+        '[':']'
+    }
+
+    for(let i=0; i < s.length; i++) {
+        if(obj[sym[sym.length - 1]] == s[i]){
+            sym.pop();
+        } else {
+            sym.push(s[i]);
+        }
+    }
+    return !sym.length;
+}
+console.log(isValid2(strParFalse));
