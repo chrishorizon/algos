@@ -484,3 +484,18 @@ var isValid2 = function(s) {
     return !sym.length;
 }
 console.log(isValid2(strParFalse));
+
+
+// ======== Longest Substring Without Repeating Characters ============
+// Given a string s, find the length of the longest substring without repeating characters.
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+let s = "abcabcbb"
+
+var lengthOfLongestSubstring = function(s) {
+    
+};
+console.log(lengthOfLongestSubstring(s));
