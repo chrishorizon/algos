@@ -91,7 +91,7 @@ function lengthOfLongestSubString(str) {
     return record;
 }
 
-console.log(lengthOfLongestSubString(str3))
+console.log(lengthOfLongestSubString(str4))
 
 
 /*****************************************************************************/

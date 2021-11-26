@@ -496,6 +496,17 @@ console.log(isValid2(strParFalse));
 let s = "abcabcbb"
 
 var lengthOfLongestSubstring = function(s) {
-    
+    var max = 0, current_string = "", i, char, pos;
+    let len  = s.length;
+        for (i = 0; i < len; i += 1) {
+            char = s.charAt(i);
+            pos = current_string.indexOf(char);
+            if (pos !== -1) {
+                current_string = current_string.substr(pos + 1);
+            }
+            current_string += char;
+            max = Math.max(max, current_string.length);
+        }
+        return max;
 };
 console.log(lengthOfLongestSubstring(s));
