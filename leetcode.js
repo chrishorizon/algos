@@ -510,3 +510,8 @@ var lengthOfLongestSubstring = function(s) {
         return max;
 };
 console.log(lengthOfLongestSubstring(s));
+
+
+function subStr(str){
+    
+}
