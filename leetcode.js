@@ -512,6 +512,29 @@ var lengthOfLongestSubstring = function(s) {
 console.log(lengthOfLongestSubstring(s));
 
 
-function subStr(str){
-    
+let strParTrue = "()";
+let strParFalse = "(]";
+
+function isVal(str){
+    let sum = [], i;
+
+    // loop through string
+    for(i = 0; i < str.length; i++){
+        let idx = str[i]
+        switch(idx){
+            case "(":
+                sum.push(")");
+                break;
+            case "{":
+                sum.push("}");
+                break;
+            case "[":
+                sum.push("]");
+                break
+            default:
+                if(idx !== sum.pop()) return false;
+        }
+    }
+    return !sum.length;
 }
+console.log(isVal(strParFalse));
