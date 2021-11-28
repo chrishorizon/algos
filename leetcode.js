@@ -475,15 +475,11 @@ var isValid2 = function(s) {
     }
 
     for(let i=0; i < s.length; i++) {
-        if(obj[sym[sym.length - 1]] == s[i]){
-            sym.pop();
-        } else {
-            sym.push(s[i]);
-        }
+        obj[sym[sym.length-1]] == s[i] ? sym.pop() : sym.push(s[i]);
     }
     return !sym.length;
 }
-console.log(isValid2(strParFalse));
+console.log(isValid2(strParTrue));
 
 
 // ======== Longest Substring Without Repeating Characters ============
@@ -496,45 +492,18 @@ console.log(isValid2(strParFalse));
 let s = "abcabcbb"
 
 var lengthOfLongestSubstring = function(s) {
-    var max = 0, current_string = "", i, char, pos;
-    let len  = s.length;
-        for (i = 0; i < len; i += 1) {
-            char = s.charAt(i);
-            pos = current_string.indexOf(char);
-            if (pos !== -1) {
-                current_string = current_string.substr(pos + 1);
-            }
-            current_string += char;
-            max = Math.max(max, current_string.length);
+    let max = 0;
+    let current_string = "";
+
+    for(let i = 0; i < s.length; i += 1) {
+        let char = s.charAt(i);
+        let pos = current_string.indexOf(char);
+        if (pos !== -1) {
+            current_string = current_string.substr(pos + 1);
         }
-        return max;
+        current_string += char;
+        max = Math.max(max, current_string.length);
+    }
+    return max;
 };
 console.log(lengthOfLongestSubstring(s));
-
-
-let strParTrue = "()";
-let strParFalse = "(]";
-
-function isVal(str){
-    let sum = [], i;
-
-    // loop through string
-    for(i = 0; i < str.length; i++){
-        let idx = str[i]
-        switch(idx){
-            case "(":
-                sum.push(")");
-                break;
-            case "{":
-                sum.push("}");
-                break;
-            case "[":
-                sum.push("]");
-                break
-            default:
-                if(idx !== sum.pop()) return false;
-        }
-    }
-    return !sum.length;
-}
-console.log(isVal(strParFalse));
