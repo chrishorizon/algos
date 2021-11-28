@@ -489,21 +489,30 @@ console.log(isValid2(strParTrue));
  * @return {number}
  */
 
-let s = "abcabcbb"
+let s = "abcabcde" // output: 5
 
 var lengthOfLongestSubstring = function(s) {
+    // Track the highest subcount found
     let max = 0;
+    // add characters to this string
     let current_string = "";
 
-    for(let i = 0; i < s.length; i += 1) {
+    for(let i = 0; i < s.length; i++) {
         let char = s.charAt(i);
-        let pos = current_string.indexOf(char);
-        if (pos !== -1) {
-            current_string = current_string.substr(pos + 1);
+        
+        // check if character already exists in the current string
+        if(current_string.includes(char)){
+            // get index of repeated character
+            let idx = current_string.indexOf(char);
+            // remove characters at current index and before idx
+            current_string = current_string.slice(idx + 1);
         }
+        // add char to current string
         current_string += char;
+        // assing new max length to max
         max = Math.max(max, current_string.length);
     }
     return max;
 };
 console.log(lengthOfLongestSubstring(s));
+
