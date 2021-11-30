@@ -530,5 +530,13 @@ console.log(lengthOfLongestSubstring(s));
 let s = "ABAB", k = 2
 
 var characterReplacement = function(s, k) {
-    
+    // initialize variable with 0 integer
+
+    // initialize variable with empty string
+
+    // loop through string
+
+        // if character in var, increment count var
+
+    // return variable with total count
 };
