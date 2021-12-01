@@ -530,13 +530,39 @@ console.log(lengthOfLongestSubstring(s));
 let s = "ABAB", k = 2
 
 var characterReplacement = function(s, k) {
+    // return 0 if empty
+    if(s.length == 0) return 0;
+
     // initialize variable with 0 integer
+    let obj = {};
+    let maxSubStr = 0;
+    let mostFrequent = 0;
+    let left = 0;
 
-    // initialize variable with empty string
+    // loop through string length
+    for(let right=0; right < s.length; right++){
+        // Update the count for current letter in the hash map
+        if(s[right] in obj) {
+            obj[s[right]] += 1;
+        } else {
+            obj[s[right]] = 1;
+        }
 
-    // loop through string
+        // Update the most frequent letter in the current window
+        mostFrequent = Math.max(mostFrequent, obj[s[right]]);
 
-        // if character in var, increment count var
-
-    // return variable with total count
+        const lengthOfWindow = (right + 1) - left;
+        // A count of letters that are required to change to make the current window all the same letter
+        const lettersToChange = lengthOfWindow - mostFrequent;
+        
+        if (lettersToChange <= k) {
+            maxSubStr = Math.max(maxSubStr, lengthOfWindow);
+        } else {
+            // Here we are decrementing the letter at s[left], because it is no longer in the current window
+            obj[s[left]] -= 1;
+            left++;
+        }
+    }
+    return maxSubStr;
 };
+console.log(characterReplacement(s, k));
