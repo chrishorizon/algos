@@ -586,10 +586,25 @@ var characterReplacement = function (s, k) {
             visited[s[left]]--;
             left++;
         }
-
         right++;
     }
-
     return right - left;
 };
 console.log(characterReplacement(s, k));
+
+
+// ========= Valid Palindrome =============
+// A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all
+// non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+// Given a string s, return true if it is a palindrome, or false otherwise.
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+let s = "A man, a plan, a canal: Panama";
+
+var isPalindrome = function(s) {
+    
+};
+console.log(isPalindrome(s));
