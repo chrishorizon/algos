@@ -602,9 +602,13 @@ console.log(characterReplacement(s, k));
  * @return {boolean}
  */
 
-let s = "A man, a plan, a canal: Panama";
+let s = "A man, a plan, a canal: Panama"; // Output: True
 
 var isPalindrome = function(s) {
+    // initialize a variable with an empty string
+
+    // loop through string
+
     
 };
 console.log(isPalindrome(s));
