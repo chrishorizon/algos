@@ -605,10 +605,12 @@ console.log(characterReplacement(s, k));
 let s = "A man, a plan, a canal: Panama"; // Output: True
 
 var isPalindrome = function(s) {
-    // initialize a variable with an empty string
-
-    // loop through string
-
-    
+    // after removing uppercase letter and making only lower case
+    // check the letters for captial or convert list into s.toLowerCase()
+    // scan the list if letters are in identical order 
+    //return if string is a palindrome
+    let rev = s.replace(/[^A-Z0-9]/ig, "").toLowerCase();
+    let str = rev.split('').reverse().join('');
+    return rev === str;
 };
-console.log(isPalindrome(s));
+console.log(isPalindrome(str5));

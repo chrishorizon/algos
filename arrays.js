@@ -469,6 +469,8 @@ const expected6 = false;
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
 
+const str5 = "aaadd";
+
 function canStringBecomePalindrome(str) {
     let dict = {};
     let count = 0;
@@ -478,6 +480,7 @@ function canStringBecomePalindrome(str) {
             dict[str[i]] = 1
         } else {
             dict[str[i]] += 1
+            console.log(dict);
         }
     }
     for (let entry in dict) {
@@ -491,7 +494,7 @@ function canStringBecomePalindrome(str) {
     return true
 
 }
-console.log(canStringBecomePalindrome(str4))
+console.log(canStringBecomePalindrome(str5))
 
 /* 
 https://leetcode.com/problems/container-with-most-water/
