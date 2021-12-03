@@ -613,4 +613,19 @@ var isPalindrome = function(s) {
     let str = rev.split('').reverse().join('');
     return rev === str;
 };
-console.log(isPalindrome(str5));
+console.log(isPalindrome(s));
+
+// version 2
+function isPalindrome2(str){
+    // Assign toLowerCase method to string argument, initialized to a new variable
+    let s = str.replace(/[^A-Z0-9]/ig,'').toLowerCase();
+
+    let start = 0; // start at zero index of the string
+
+    // loop through string from end to start
+    for(let end = s.length-1; end >= 0; end--){
+        s[start] != s[end] ? false : start++; // compare start and last index, if they dont match return false. 
+    }
+    return true;
+}
+console.log(isPalindrome2(s));
