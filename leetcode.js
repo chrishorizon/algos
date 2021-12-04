@@ -622,9 +622,14 @@ function isPalindrome2(str){
 
     let start = 0; // start at zero index of the string
 
-    // loop through string from end to start
+    // loop through string from back to front
     for(let end = s.length-1; end >= 0; end--){
-        s[start] != s[end] ? false : start++; // compare start and last index, if they dont match return false. 
+        // check if start and end match, if they dont match return false, else increment start var 
+        if(s[start] != s[end]){
+            return false;
+        } else {
+            start++;
+        }
     }
     return true;
 }
