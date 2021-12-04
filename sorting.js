@@ -12,10 +12,12 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function bubbleSort(nums) {
     for(var j = 0; j < nums.length; j++){
         for(var x = 0; x < (nums.length - j - 1); x++){
-            if (nums[x] > nums [j+1]){
-                var firstNum = nums[j];
-                nums[j] = nums[j+ 1];
-                nums[j + j] = firstNum;
+            if (nums[x] > nums[x+1]){
+                
+                // var firstNum = nums[x];
+                // nums[x] = nums[x+ 1];
+                // nums[x + 1] = firstNum;
+                [nums[x+1], nums[x]] = [nums[x], nums[x+1]]
             }
         }
     }
