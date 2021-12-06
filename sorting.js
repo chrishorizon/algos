@@ -238,8 +238,10 @@ function partition(nums = [], left = 0, right = nums.length - 1) {
 }
 
 // Partition Version 1
-const partition = (array, left, right) => {
-    let pivot = array[Math.floor(Math.random() * (right - left) + 1) + left]; // random number between left & arr.length - 1
+const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+
+const partition = (array, left=0, right = array.length-1) => {
+    let pivot = array[Math.floor(left + right) / 2]; // random number between left & arr.length - 1
     while (left < right) {
         while (array[left] < pivot) {
             left++;
@@ -251,6 +253,7 @@ const partition = (array, left, right) => {
     }
     return right;
 }
+console.log(partition(nums));
 
 // Partition Version 2
 function partition(nums, left = 0, right = nums.length - 1) {

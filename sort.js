@@ -51,3 +51,28 @@ function bubbleSort2(arr){
     console.log(arr);
 }
 bubbleSort2(numsRandomOrder);
+
+// ====== Quick Sort ==============
+const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+
+function partition(arr, left = 0, right = arr.length-1){
+    // initialize a pivot
+    let pivot = arr[Math.floor((left + right) / 2)];
+
+    // loop while left is less than right
+    
+
+        // while left is less than pivot, increase left index
+
+        // while right is greater than pivot, increase right index
+
+        // swap left and right values
+    
+    // return right index
+}
+
+function quickSort(arr){
+    // edge case, if array contains 0 or 1 value
+    
+}
+console.log(quickSort(nums));
