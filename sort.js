@@ -22,5 +22,19 @@ bubbleSort(numsRandomOrder);
 const numsRandomOrder = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
 
 function bubbleSort2(arr){
-    
+    // declare i and j variable
+
+    // declare len var
+
+    // initialize false bool variable
+
+    // loop through arr i
+        
+        // assign false bool var
+
+        // loop through arr j
+
+        // check if j is greater than j+1, if true, swap values and assign true to bool var
+
+    // if bool var is true, break
 }
