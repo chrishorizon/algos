@@ -57,19 +57,25 @@ const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
 
 function partition(arr, left = 0, right = arr.length-1){
     // initialize a pivot
-    let pivot = arr[Math.floor((left + right) / 2)];
+    let pivot = arr[Math.floor(left + right) / 2];
 
     // loop while left is less than right
-    
-
+    while(left < right){
         // while left is less than pivot, increase left index
-
+        while(arr[left] < pivot){
+            left++;
+        }
         // while right is greater than pivot, increase right index
-
+        while(arr[right] > pivot){
+            right--;
+        }
         // swap left and right values
-    
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+    }
     // return right index
+    return right;
 }
+console.log(partition(nums));
 
 function quickSort(arr){
     // edge case, if array contains 0 or 1 value
