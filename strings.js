@@ -95,3 +95,47 @@ console.log(lengthOfLongestSubString(str4))
 
 
 /*****************************************************************************/
+/*
+Write me a function that will take in a string and return another string
+    with all the letters in each word reversed (but the words in the original order still).
+    e.g. "Hello world" -> "olleH dlrow"
+*/
+
+let s = "Hello world";
+
+function isWhitespace(letter){
+    return [' ', '\n', '\t'].includes(letter)
+}
+
+function reverseWords(text) {
+    let currentWord = []
+    const result = []
+
+    // Split text string into an array of letters and iterate over each letter
+    text.split('').forEach(letter => {
+        if (isWhitespace(letter)) {
+            // If letter is whitespace, add currentWord in reverse order to the result, letter by letter
+            // since we're using .pop() it will take the elements from the end of the array to the front
+            while (currentWord.length > 0) {
+                result.push(currentWord.pop())
+            }
+
+            // Add the whitespace letter after currentWord (reversed)
+            result.push(letter)
+        } else {
+
+            // If the letter is not whitespace, add it to the currentWord
+            currentWord.push(letter)
+        }
+    })
+
+    // After looping through the whole set of letters, check if we have a word that needs to be added
+    // in case the string did not end in whitespace.
+    while (currentWord.length > 0) {
+        result.push(currentWord.pop())
+    }
+
+    // Join the array of letters back into a single string
+    return result.join('')
+}
+console.log(reverseWords(s));
