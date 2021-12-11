@@ -128,6 +128,7 @@ function findObjects(criteria, collection) {
     }
     return result
 }
+console.log(findObjects(searchCriteria1, items));
 
 // Version 2
 function findObjects1(criteria, collection) {
