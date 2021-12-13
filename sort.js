@@ -77,8 +77,21 @@ function partition(arr, left = 0, right = arr.length-1){
 }
 console.log(partition(nums));
 
+const nums = [1, 17, 12, 3, 9, 13, 21, 4, 27];
+
 function quickSort(arr){
     // edge case, if array contains 0 or 1 value
-    
+    if(arr.length <= 1) return arr;
+
+    let pivot = arr[0];
+
+    let left = [];
+    let right = [];
+
+    for(let i = 1; i < arr.length; i++) {
+        arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]);
+    }
+
+    return quickSort(left).concat(pivot, quickSort(right));
 }
 console.log(quickSort(nums));
