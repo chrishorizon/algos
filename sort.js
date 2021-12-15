@@ -89,7 +89,12 @@ function quickSort(arr){
     let right = [];
 
     for(let i = 1; i < arr.length; i++) {
-        arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]);
+        // arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]);
+        if(arr[i] < pivot){
+            left.push(arr[i])
+        } else {
+            right.push(arr[i])
+        }
     }
 
     return quickSort(left).concat(pivot, quickSort(right));
