@@ -139,3 +139,30 @@ function reverseWords(text) {
     return result.join('')
 }
 console.log(reverseWords(s));
+
+// Optimized Reverse String without string concatenation
+let s = "Hello world";
+
+function revStr(str) {
+    let temp = [];
+    let res = [];
+
+    str.split('').forEach(letter => {
+            while(temp.length > 0) {
+                res.push(temp.pop())
+            } 
+            temp.push(letter)
+        
+    });
+
+    while(temp.length > 0) {
+        res.push(temp.pop())
+    }
+
+    for(let i = res.length-1; i >= 0; i--) {
+        temp.push(res[i])
+    }
+    return temp.join('');
+}
+
+console.log(revStr(s));
