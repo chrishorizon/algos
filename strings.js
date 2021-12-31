@@ -147,18 +147,19 @@ function revStr(str) {
     let temp = [];
     let res = [];
 
+    // iterate through each character
     str.split('').forEach(letter => {
             while(temp.length > 0) {
                 res.push(temp.pop())
             } 
             temp.push(letter)
-        
     });
-
+    // once loop is done iterating through characters, check if there is any
+    // chars in temp that were missed and push them to res variable if there is
     while(temp.length > 0) {
         res.push(temp.pop())
     }
-
+    // reverse array
     for(let i = res.length-1; i >= 0; i--) {
         temp.push(res[i])
     }
