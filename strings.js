@@ -167,3 +167,125 @@ function revStr(str) {
 }
 
 console.log(revStr(s));
+
+
+
+
+let x = ['1', '2', '15', '-7', '300']
+let y = x.sort()
+
+console.log(y);
+
+
+let z = "abcdefg"
+function rec(str){
+    if (str.length <= 1) {
+        return str;
+    }
+    let firstChar = str.charAt(0)
+    let lastChar = str.slice(1)
+
+    return rec(lastChar) + firstChar
+}
+console.log(rec(z));
+
+
+const promises = [3, 2, 1].map(d => (
+    new Promise(resolve => {
+        setTimeout(() => {
+            resolve(d)
+        })
+    }, d * 1000)
+))
+
+Promise.race(promises).then((val) => {
+    console.log(val);
+})
+
+
+function b(sent) {
+    let root = {}
+    sent.forEach(s => {
+        let base = root
+        s.split(' ').forEach(w => {
+            if (base[w] === undefined){
+                base[w] = {}
+            }
+            base = base[w]
+        })
+    })
+    return root;
+}
+
+let tree = b(['Hello world', 'Hello there'])
+
+console.log(tree);
+
+
+function func(a, b) {
+    a += 1
+    b.push(1)
+}
+const a = 0
+const b = []
+func(a, b)
+console.log(a, b);
+
+
+function del(it) {
+    for(var i =0; i < it.length; i++) {
+        if(it[i].length == 0) {
+            it.splice(i, 1);
+        }
+    }
+}
+
+var names = ['Rachel', '', 'Meghana', '', '', 'Tim'];
+del(names);
+console.log(names);
+
+
+const f = n => n <= 1 ? 1 : n * f(n-1)
+
+let g = f(4);
+
+console.log(g);
+
+
+let words = ["Hello", "World"];
+
+words.forEach((word, i) => {
+    (words[i] = word.split('').reverse().join('')).toLowerCase()
+})
+console.log(words);
+
+
+function hasPosNeg(arr) {
+    let hasPos = false
+    let hasNeg = false
+
+    arr.forEach(num => {
+        hasPos = num > 0
+        hasNeg = num < 0
+    })
+    return [hasPos, hasNeg]
+}
+
+let test = [0,1,2]
+
+console.log(hasPosNeg(test));
+
+
+let t = [1,3,5,2,4]
+
+function _(func, item) {
+    let i = 0
+    for (let it of item){
+        if (func(it)) {
+            item[i] = it
+            i += 1
+        }
+    }
+    item.splice(i)
+}
+console.log(_(t));
