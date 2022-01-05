@@ -255,9 +255,10 @@ console.log(g);
 let words = ["Hello", "World"];
 
 words.forEach((word, i) => {
-    (words[i] = word.split('').reverse().join('')).toLowerCase()
+    (words[i] = word.split('').reverse().join('').toLowerCase())
+    console.log(words[i]);
 })
-console.log(words);
+// console.log(words);
 
 
 function hasPosNeg(arr) {
