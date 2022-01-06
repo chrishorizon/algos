@@ -184,6 +184,7 @@ function rec(str){
     }
     let firstChar = str.charAt(0)
     let lastChar = str.slice(1)
+    console.log(lastChar);
 
     return rec(lastChar) + firstChar
 }
@@ -235,6 +236,7 @@ console.log(a, b);
 function del(it) {
     for(var i =0; i < it.length; i++) {
         if(it[i].length == 0) {
+            console.log(it);
             it.splice(i, 1);
         }
     }
