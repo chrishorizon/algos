@@ -156,9 +156,9 @@ function revStr(str) {
     });
     // once loop is done iterating through characters, check if there is any
     // chars in temp that were missed and push them to res variable if there is
-    while(temp.length > 0) {
-        res.push(temp.pop())
-    }
+    // while(temp.length > 0) {
+    //     res.push(temp.pop())
+    // }
     // reverse array
     for(let i = res.length-1; i >= 0; i--) {
         temp.push(res[i])
