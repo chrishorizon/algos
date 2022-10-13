@@ -24,7 +24,7 @@ console.log(x);
 
 
 // Return of Return
-var x = 5;
+var x = 6;
     
 function addToX(amount) {
     return x + amount;
