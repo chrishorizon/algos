@@ -20,6 +20,7 @@ function twoSum(nums, target){
         }
     }
 }
+
 console.log(twoSum(newArr, tar));
 
 
