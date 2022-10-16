@@ -667,3 +667,42 @@ function twoSumIndex(nums, target) {
 }
 
 console.log(twoSumIndex(numsArr, 17));
+
+
+// ======= Contains Duplicate =====================
+// Given an integer array nums, return true if any value appears at least twice in
+// the array, and return false if every element is distinct.
+
+let numsArr1 = [2, 5, 7, 10, 3, 2]; // true
+let numsArr2 = [2, 5, 7, 10, 3]; // false
+
+function containsDup(nums) {
+    // instantiate map object to store value
+    let numsArr = new Map();
+
+    // loop through array
+    for (let i = 0; i < nums.length; i++) {
+        // if index value is in variable, return true
+        if (numsArr.has(nums[i])) {
+            return true;
+        } else {
+            // else, set value as key
+            numsArr.set(nums[i], i);
+        }
+    }
+    return false;
+}
+
+function containsDupSort(nums) {
+    // initalize array of sorted numbers
+    let sorted = nums.sort();
+
+    // loop thorugh array
+    for (let i = 0; i < sorted.length; i++) {
+    // if index value equals to next value, return true
+    if (sorted[i] == sorted[i+1]) return true
+    }
+    return false;
+}
+
+console.log(containsDupSort(numsArr2));
