@@ -706,3 +706,22 @@ function containsDupSort(nums) {
 }
 
 console.log(containsDupSort(numsArr2));
+
+
+let randomStr = "abcdefg";
+
+function reverseString(str) {
+    let revStr = "";
+
+    for (let i = str.length-1; i >= 0; i--){
+        revStr += str[i];
+    }
+
+    return revStr;
+}
+
+function revStrOneLiner(str) {
+    return str.split("").reverse().join("")
+}
+
+console.log(revStrRefactored(randomStr));
