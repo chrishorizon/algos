@@ -725,3 +725,30 @@ function revStrOneLiner(str) {
 }
 
 console.log(revStrRefactored(randomStr));
+
+
+// ======= Best Time to Buy and Sell Stock ======================
+// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+let prices = [7,1,5,3,6,4] // 5
+
+function maxStockProfit(price) {
+    // initialize empty array to store max value
+    let bottom = price[0];
+
+    // initialize prift variable with index 0
+    let profit = 0;
+
+    // while start is less than end, continue loop
+    for(let i = 0; i < price.length-1; i++) {
+        if (bottom > price[i]) {
+            bottom = price[i];
+        }
+        if (profit < price[i] - bottom) {
+            profit = price[i] - bottom;
+        }
+    }
+    return profit;
+}
+console.log(maxStockProfit(prices));
