@@ -752,3 +752,34 @@ function maxStockProfit(price) {
     return profit;
 }
 console.log(maxStockProfit(prices));
+
+
+// ======= Best Time to Buy and Sell Stock ======================
+// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+let pricePerDay = [7, 15, 13, 11, 27]; //8
+
+function maxProfit(price) {
+    // initialize minPrice variable with first index
+    let minPrice = price[0];
+
+    // initialize profit variable with zero
+    let profit = 0;
+
+    // loop through array
+    for (let i = 0; i < price.length; i++) {
+        // if minPrice is greater than current idx, assign current idx to minPrice variable
+        if(minPrice > price[i]){
+            minPrice = price[i];
+        }
+        // if profit is less current idx - minPrice, re-initialize profit variable with value
+        if(profit < price[i] - minPrice) {
+            profit = price[i] - minPrice;
+        }
+    }
+
+    // return profit
+    return profit;
+}
+console.log(maxProfit(pricePerDay));
