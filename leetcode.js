@@ -809,12 +809,12 @@ function maxWaterContainer(arr) {
 
     // loop through array
     while(firstIdx < lastIdx) {
-        // initialize variable with area
+        // initialize new variable with area
         let area = (lastIdx - firstIdx) * Math.min(arr[firstIdx], arr[lastIdx]);
-        // re-assign maxArea with area
+        // re-assign maxArea with higher value
         maxArea = Math.max(maxArea, area);
         // move idx of smaller value
-        arr[firstIdx] > arr[lastIdx] ? lastIdx-- : firstIdx++
+        arr[firstIdx] > arr[lastIdx] ? lastIdx-- : firstIdx++;
     }
     // return maxArea
     return maxArea;
