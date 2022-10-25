@@ -783,3 +783,40 @@ function maxProfit(price) {
     return profit;
 }
 console.log(maxProfit(pricePerDay));
+
+
+// ======== Container With Most Water ===========
+// Given n non-negative integers a1, a2, ..., an , where each represents a point at
+// coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the
+// line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a
+// container, such that the container contains the most water.
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+
+var waterLevel = [3, 5, 1, 10, 6, 6]
+
+function maxWaterContainer(arr) {
+    // initialize firstIdx var with first idx in array
+    let firstIdx = 0;
+    
+    // initialize lastIdx var with last idx in array
+    let lastIdx = arr.length-1;
+
+    // declare variable to store water level
+    let maxArea = 0;
+
+    // loop through array
+    while(firstIdx < lastIdx) {
+        // initialize variable with area
+        let area = (lastIdx - firstIdx) * Math.min(arr[firstIdx], arr[lastIdx]);
+        // re-assign maxArea with area
+        maxArea = Math.max(maxArea, area);
+        // move idx of smaller value
+        arr[firstIdx] > arr[lastIdx] ? lastIdx-- : firstIdx++
+    }
+    // return maxArea
+    return maxArea;
+}
+console.log(maxWaterContainer(waterLevel));
