@@ -758,7 +758,7 @@ console.log(maxStockProfit(prices));
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
-let pricePerDay = [7, 15, 13, 11, 27]; //8
+let pricePerDay = [7, 15, 13, 11, 27]; //20
 
 function maxProfit(price) {
     // initialize minPrice variable with first index
@@ -774,9 +774,7 @@ function maxProfit(price) {
             minPrice = price[i];
         }
         // if profit is less current idx - minPrice, re-initialize profit variable with value
-        if(profit < price[i] - minPrice) {
-            profit = price[i] - minPrice;
-        }
+        profit = Math.max(profit, price[i] - minPrice);
     }
 
     // return profit
