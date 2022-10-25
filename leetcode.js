@@ -758,7 +758,7 @@ console.log(maxStockProfit(prices));
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
-let pricePerDay = [7, 15, 13, 11, 27]; //8
+let pricePerDay = [7, 15, 13, 11, 27]; //20
 
 function maxProfit(price) {
     // initialize minPrice variable with first index
@@ -774,9 +774,7 @@ function maxProfit(price) {
             minPrice = price[i];
         }
         // if profit is less current idx - minPrice, re-initialize profit variable with value
-        if(profit < price[i] - minPrice) {
-            profit = price[i] - minPrice;
-        }
+        profit = Math.max(profit, price[i] - minPrice);
     }
 
     // return profit
@@ -809,12 +807,12 @@ function maxWaterContainer(arr) {
 
     // loop through array
     while(firstIdx < lastIdx) {
-        // initialize variable with area
+        // initialize new variable with area
         let area = (lastIdx - firstIdx) * Math.min(arr[firstIdx], arr[lastIdx]);
-        // re-assign maxArea with area
+        // re-assign maxArea with higher value
         maxArea = Math.max(maxArea, area);
         // move idx of smaller value
-        arr[firstIdx] > arr[lastIdx] ? lastIdx-- : firstIdx++
+        arr[firstIdx] > arr[lastIdx] ? lastIdx-- : firstIdx++;
     }
     // return maxArea
     return maxArea;
