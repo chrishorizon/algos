@@ -818,3 +818,22 @@ function maxWaterContainer(arr) {
     return maxArea;
 }
 console.log(maxWaterContainer(waterLevel));
+
+
+let liquidLevel = [3, 5, 4, 8, 6] // 15
+
+function waterArea(arr) {
+    let first = 0;
+    let last = arr.length-1;
+    let maxArea = 0;
+
+    while(first < last) {
+        let area = (last - first) * Math.min(arr[first], arr[last])
+
+        maxArea = Math.max(maxArea, area);
+
+        arr[first] < arr[last] ? first++ : last--;
+    }
+    return maxArea;
+}
+console.log(waterArea(liquidLevel));
