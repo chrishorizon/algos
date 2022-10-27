@@ -152,10 +152,10 @@ var threeSum = function(nums) {
                 res.push([nums[i], nums[left], nums[right]]);
                 // move left and right index if subsequent value is === to current
                 while(nums[left] === nums[left+1]) left++;
-                while(nums[right] === nums[right-1]) right++;
+                while(nums[right] === nums[right-1]) right--;
                 // move left and right index 
                 left++;
-                right++;
+                right--;
             } else if(sum < target){
                 left++;
             } else right--;
@@ -828,12 +828,55 @@ function waterArea(arr) {
     let maxArea = 0;
 
     while(first < last) {
-        let area = (last - first) * Math.min(arr[first], arr[last])
-
-        maxArea = Math.max(maxArea, area);
+        maxArea = Math.max(maxArea, (last - first) * Math.min(arr[first], arr[last]));
 
         arr[first] < arr[last] ? first++ : last--;
     }
     return maxArea;
 }
 console.log(waterArea(liquidLevel));
+
+
+// ====== 3Sum ===================
+// Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that
+// i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+// Notice that the solution set must not contain duplicate triplets.
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+let num = [-1,0,1,2,-1,-4];
+let sorted = [-4, -1, -1, 0, 1, 2]
+
+function threeSumSol(arr) {
+    // initialize variable with empty array
+    let triplets = [];
+    if(arr == null || arr.length < 3) return triplets;
+
+    // sort array
+    arr.sort((a, b) => a - b);
+
+    // loop through array
+    for (let i = 0; i < arr.length - 2; i++) {
+        if (arr[i] === arr[i - 1]) continue;
+        // initialize first index var
+        let left = i + 1;
+        // initialize last index var
+        let right = arr.length - 1;
+        while (left < right) {
+            let sum = arr[i] + arr[left] + arr[right];
+            if (sum === 0) {
+                triplets.push([arr[i], arr[left], arr[right]]);
+                while (arr[left] === arr[left + 1]) left++;
+                while (arr[right] === arr[right - 1]) right--;
+                left++;
+                right--;
+            } else if (sum < 0) {
+                left++
+            } else right--;
+        }
+    }
+    return triplets;
+}
+console.log(threeSumSol([1,-1,-1,0]));
