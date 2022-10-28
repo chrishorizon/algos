@@ -849,6 +849,8 @@ console.log(waterArea(liquidLevel));
 let num = [-1,0,1,2,-1,-4];
 let sorted = [-4, -1, -1, 0, 1, 2]
 
+let num2 = [1,-1,-1,0];
+
 function threeSumSol(arr) {
     // initialize variable with empty array
     let triplets = [];
@@ -879,4 +881,43 @@ function threeSumSol(arr) {
     }
     return triplets;
 }
-console.log(threeSumSol([1,-1,-1,0]));
+
+function tSum(nums) {
+    // initialize empty array
+    let triplets = [];
+    // edge case if array is null or less than 3 return empty array
+    if(nums == null || nums.length < 3) return triplets;
+    // sort nums
+    nums.sort((a,b) => a-b);
+
+    // loop through array
+    for (let i = 0; i < nums.length - 2; i++) {
+        if(nums[i] === nums[i-1]) continue;
+        // initialize left var with 2nd idx
+        let left = i + 1;
+        // initialize right var with last idx
+        let right = nums.length - 1;
+
+        // while loop left less than right
+        while (left < right) {
+            // initialize var sum of current idx, left idx and right idx
+            let sum = nums[i] + nums[left] + nums[right];
+            // if sum is equals to 0, push idx to variable array
+            if (sum === 0) {
+                triplets.push([nums[i], nums[left], nums[right]]);
+                // while left idx is equals to left idx+1, increment
+                while (nums[left] === nums[left + 1]) left++;
+                // while right idx is equals to right idx-1, decrement
+                while (nums[right] === nums[right - 1]) right--;
+                // increment left, decrement right
+                left++; right--;
+            }
+            // if sum is less than zero, increment, else decrement right
+            else if (sum < 0) {
+                left++;
+            } else right--;
+        }
+    }
+    return triplets;
+}
+console.log(tSum(num));
