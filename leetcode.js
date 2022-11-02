@@ -947,4 +947,26 @@ function tSumPractice(nums) {
     }
     return triplets;
 }
-console.log(tSumPractice(num2));
+console.log(tSumPractice(num));
+
+
+// Reverse a string
+let genetiCode = "abcdefg";
+
+function reverseStringOpt(str) {
+    return str.split("").reverse().join("");
+}
+
+function reverseString(str) {
+    let reverse = "";
+    let start = 0;
+    let end = str.length-1;
+
+    while (end >= start) {
+        reverse += str[end];
+        end--;
+    }
+    return reverse;
+}
+
+console.log(reverseString(genetiCode));
