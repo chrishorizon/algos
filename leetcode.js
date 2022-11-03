@@ -957,16 +957,25 @@ function reverseStringOpt(str) {
     return str.split("").reverse().join("");
 }
 
-function reverseString(str) {
+function reverseStringForLoop(str) {
     let reverse = "";
-    let start = 0;
+
+    for (let i = str.length-1; i >= 0; i--) {
+        reverse += str[i];
+    }
+    return reverse;
+}
+
+function reverseStringWhileLoop(str) {
+    let reverse = "";
+
     let end = str.length-1;
 
-    while (end >= start) {
+    while (end >= 0) {
         reverse += str[end];
         end--;
     }
     return reverse;
 }
 
-console.log(reverseString(genetiCode));
+console.log(reverseStringWhileLoop(genetiCode));
