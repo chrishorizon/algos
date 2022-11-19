@@ -83,8 +83,37 @@ function threeSum(arr) {
 // console.log(threeSum(num));
 
 
-// Container With Most Water
+/* **** Container With Most Water ****
+* Given n non-negative integers a1, a2, ..., an , where each represents a point at
+* coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the
+* line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a
+* container, such that the container contains the most water.
+*/
 var waterLevel = [3, 5, 1, 10, 6, 6];
+
+function maxArea(arr) {
+    // EDGE CASE - if null, return null
+    if (arr == null) return null;
+
+    // declare result var and assign 0 value
+    let result = 0;
+
+    // declare var and assign left and right idx
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right) {
+        // assign max area to a variable
+        let maxArea = (right - left) * Math.min(arr[left], arr[right]);
+        // re-assign max area to result var
+        result = Math.max(result, maxArea);
+
+        // move idx with the lowest value
+        (arr[left] < arr[right]) ? left++ : right--;
+    }
+    return result;
+}
+// console.log(maxArea(waterLevel));
 
 // Best Time to Buy and Sell Stock
 let prices = [7,1,5,3,6,4]; // 5
