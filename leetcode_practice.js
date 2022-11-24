@@ -73,9 +73,7 @@ function threeSum(arr) {
                 right--;
             }
             // if sum var is less than 0, move left. If greater, than decrement right
-            else if ( sum < 0) {
-                left++;
-            } else { right--; }
+            else (sum < 0) ? left++ : right--;
         }
     }
     return result;
