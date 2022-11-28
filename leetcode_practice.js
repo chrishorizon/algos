@@ -111,6 +111,25 @@ function maxArea(arr) {
     }
     return result;
 }
+
+function maxArea(arr) {
+    // Edge case - if variable not assigned a value
+    if (arr == null) return null;
+
+    // declare result var and assign 0 value
+    let result = [];
+
+    // declare var and assign left and right idx
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right) {
+        result = Math.max(result, (right - left) * Math.min(arr[left], arr[right]));
+
+        arr[left] < arr[right] ? left++ : right--;
+    }
+    return result;
+}
 // console.log(maxArea(waterLevel));
 
 // Best Time to Buy and Sell Stock
