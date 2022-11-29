@@ -132,8 +132,34 @@ function maxArea(arr) {
 }
 // console.log(maxArea(waterLevel));
 
-// Best Time to Buy and Sell Stock
+/* **** Best Time to Buy and Sell Stock ****
+* You are given an array prices where prices[i] is the price of a given stock on the ith day.
+* Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+*/
 let prices = [7,1,5,3,6,4]; // 5
+
+function maxProfit(prices) {
+    // Edge case 
+    if (prices == null) return null;
+    if (prices.length <= 1) return 0;
+
+    // declare variable, assign 0 value
+    let profit = 0;
+
+    // for loop start at idx 0
+    for (let i = 0; i <= prices.length; i++) {
+        // declare variable with i+1
+        let left = i + 1;
+
+        // loop and compare if price[i] is less than next day(s), and assign the profit value 
+        while (prices[i] < prices[left]) {
+            profit = Math.max(profit, prices[left] - prices[i]);
+            left++;
+        }
+    }
+    return profit;
+}
+// console.log(maxProfit(prices));
 
 // Contains Duplicate
 let numsArr1 = [2, 5, 7, 10, 3, 2]; // true
