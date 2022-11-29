@@ -141,7 +141,6 @@ let prices = [7,1,5,3,6,4]; // 5
 function maxProfit(prices) {
     // Edge case 
     if (prices == null) return null;
-    if (prices.length <= 1) return 0;
 
     // declare variable, assign 0 value
     let profit = 0;
@@ -159,7 +158,32 @@ function maxProfit(prices) {
     }
     return profit;
 }
-// console.log(maxProfit(prices));
+
+function maxStockProfit(prices) {
+    // edge case
+    if (prices == null) return null;
+
+    // declare variable and assign 0 value
+    let profit = 0;
+
+    // declare variable to assign 0 idx
+    let low = prices[0];
+
+    // loop through array
+    for (let i = 0; i < prices.length; i++) {
+        // check if low is greater than current idx, if so, re-assign with new lower value
+        if (low > prices[i]) {
+            low = prices[i];
+        }
+
+        // check if profit is less then low minus prices[i], if so, re-assign
+        if (profit < prices[i] - low) {
+            profit = prices[i] - low;
+        }
+    }
+    return profit;
+}
+// console.log(maxStockProfit(prices));
 
 // Contains Duplicate
 let numsArr1 = [2, 5, 7, 10, 3, 2]; // true
