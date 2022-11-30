@@ -188,3 +188,22 @@ function maxStockProfit(prices) {
 // Contains Duplicate
 let numsArr1 = [2, 5, 7, 10, 3, 2]; // true
 let numsArr2 = [2, 5, 7, 10, 3]; // false
+
+function containsDup(nums) {
+    // edge case
+    if (nums == null) return null;
+
+    // sort the nums array
+    if (nums.length >= 0 && nums instanceof Array) {
+        nums.sort((a, b) => a - b);
+    }
+
+    // loop through array
+    for (let i = 0; i < nums.length; i++) {
+        // check if i equals i + 1, return true
+        if (nums[i] == nums[i + 1]) return true;
+    }
+
+    return false;
+}
+console.log(containsDup(numsArr1));
