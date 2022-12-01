@@ -206,4 +206,22 @@ function containsDup(nums) {
 
     return false;
 }
-console.log(containsDup(numsArr1));
+
+function containsDupRef(nums) {
+    // edge case
+    if (nums == null) return null;
+
+    // declare variable and initialize map
+    let result = new Map();
+
+    // loop through array, check if nums[i] is in map
+    for (let i = 0; i < nums.length; i++) {
+        if (!result.has(nums[i])) {
+            result.set(nums[i], i);
+        } else {
+            return true;
+        }
+    }
+    return false;
+}
+// console.log(containsDupRef(numsArr1));
