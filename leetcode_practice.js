@@ -132,6 +132,7 @@ function maxArea(arr) {
 }
 // console.log(maxArea(waterLevel));
 
+
 /* **** Best Time to Buy and Sell Stock ****
 * You are given an array prices where prices[i] is the price of a given stock on the ith day.
 * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
@@ -185,7 +186,8 @@ function maxStockProfit(prices) {
 }
 // console.log(maxStockProfit(prices));
 
-// Contains Duplicate
+
+// **** Contains Duplicate ****
 let numsArr1 = [2, 5, 7, 10, 3, 2]; // true
 let numsArr2 = [2, 5, 7, 10, 3]; // false
 
@@ -225,3 +227,38 @@ function containsDupRef(nums) {
     return false;
 }
 // console.log(containsDupRef(numsArr1));
+
+
+/* **** Valid Palindrome ****
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all
+non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise. */
+
+let s = "A man, a plan, a canal: Panama"; // Output: True
+
+function isPalindrome(str) {
+    // edge cases
+    if (str == null || str.length <= 1 || typeof str === "number") return false;
+
+    let convertedStr = "";
+
+    // reformat string to remove all non-alpha chars and convert letters to lowercase
+    if (typeof str === "string") {
+        convertedStr = str.replace(/\W/g, '').toLowerCase();
+        // after removing whitespace, if length is still equal to 1, return false
+        if (convertedStr.length <= 1) return false;
+    }
+
+    let firstIdx = 0;
+    let lastIdx = convertedStr.length - 1;
+
+    // loop through string and compare if both first and last idx are equal
+    while (firstIdx < lastIdx) {
+        if (convertedStr[firstIdx] != convertedStr[lastIdx]) {
+            return false;
+        }
+        firstIdx++; lastIdx--;
+    }
+    return true;
+}
+console.log(isPalindrome(s));
