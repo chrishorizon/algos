@@ -238,7 +238,7 @@ let s = "A man, a plan, a canal: Panama"; // Output: True
 
 function isPalindrome(str) {
     // edge cases
-    if (str == null || str.length <= 1 || typeof str === "number") return false;
+    if (str == null || typeof str === "number") return false;
 
     let convertedStr = "";
 
@@ -261,4 +261,4 @@ function isPalindrome(str) {
     }
     return true;
 }
-console.log(isPalindrome(s));
+// console.log(isPalindrome(s));
