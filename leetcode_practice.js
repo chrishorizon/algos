@@ -261,4 +261,24 @@ function isPalindrome(str) {
     }
     return true;
 }
-// console.log(isPalindrome(s));
+
+function isPalindromeRef(str) {
+    // edge case
+    if (str == null || typeof str === "number") return false;
+
+    // declare var and initialize converted str
+    let convertedStr = "";
+
+    // declare var and assign rev str
+    let revStr = "";
+
+    if (typeof str === "string") {
+        convertedStr = str.replace(/\W/g, "").toLowerCase();
+        revStr = convertedStr.split("").reverse().join("");
+
+        if (convertedStr.length <= 1) return false;
+    }
+
+    return convertedStr === revStr;
+}
+// console.log(isPalindromeRef(s));
