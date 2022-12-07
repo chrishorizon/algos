@@ -282,3 +282,44 @@ function isPalindromeRef(str) {
     return convertedStr === revStr;
 }
 // console.log(isPalindromeRef(s));
+
+
+/* **** Product of Array Except Self ****
+* Given an integer array nums, return an array answer such that answer[i] is
+* equal to the product of all the elements of nums except nums[i].
+* The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+* You must write an algorithm that runs in O(n) time and without using the division operation. */
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+
+let product = [2, 4, 7, 1];
+
+function productExceptSelf(nums) {
+    // declare variable to store res in array
+    let result = [];
+
+    // declare var to assign starting value of 1 to multiply
+    let carry = 1;
+
+    // loop through array
+    for (let i = 0; i < nums.length; i++) {
+        // push carry var to result to store value to multipy with nums
+        result.push(carry);
+        // multiply carry with nums idx value
+        carry *= nums[i];
+    }
+
+    // reset carry var
+    carry = 1;
+    // reverse loop through array to multipy values from right to left
+    for (let i = nums.length - 1; i >= 0; i--) {
+        // multiply carry with result[i]
+        result[i] *= carry;
+        // multiply carry with nums[i]
+        carry *= nums[i];
+    }
+    return result;
+}
+console.log(productExceptSelf(product));
