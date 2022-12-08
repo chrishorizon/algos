@@ -293,7 +293,7 @@ function isPalindromeRef(str) {
  * @return {number[]}
  */
 
-let product = [2, 4, 7, 1];
+let product = [5, 5, 5, 5];
 
 function productExceptSelf(nums) {
     // declare variable to store res in array
@@ -321,4 +321,22 @@ function productExceptSelf(nums) {
     }
     return result;
 }
-// console.log(productExceptSelf(product));
+
+function productExceptSelfRef(nums) {
+    let productHolder = [];
+    let currentVal = 1;
+
+    for (let i = 0; i < nums.length; i++) {
+        productHolder.push(currentVal);
+        currentVal *= nums[i];
+    }
+
+    currentVal = 1;
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        productHolder[i] *= currentVal;
+        currentVal *= nums[i];
+    }
+    return productHolder;
+}
+// console.log(productExceptSelfRef(product));
