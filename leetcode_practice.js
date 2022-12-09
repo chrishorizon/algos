@@ -339,4 +339,21 @@ function productExceptSelfRef(nums) {
     }
     return productHolder;
 }
-// console.log(productExceptSelfRef(product));
+
+function productExceptSelfMod(nums) {
+    let productHolder = [];
+    let currentVal = 1;
+
+    for (let i = 0; i < nums.length; i++) {
+        productHolder.push(currentVal);
+        currentVal *= nums[i];
+    }
+
+    currentVal = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
+        productHolder[i] *= currentVal;
+        currentVal *= nums[i];
+    }
+    return productHolder;
+}
+// console.log(productExceptSelfMod(product));
