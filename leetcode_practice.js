@@ -357,3 +357,20 @@ function productExceptSelfMod(nums) {
     return productHolder;
 }
 // console.log(productExceptSelfMod(product));
+
+function prodExSePractice(nums) {
+    let products = [];
+    let currentSum = 1;
+
+    for(let i = 0; i < nums.length; i++) {
+        products.push(currentSum);
+        currentSum *= nums[i];
+    }
+    currentSum = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
+        products[i] *= currentSum;
+        currentSum *= nums[i];
+    }
+    return products;
+}
+console.log(prodExSePractice(product))
