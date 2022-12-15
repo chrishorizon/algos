@@ -356,7 +356,6 @@ function productExceptSelfMod(nums) {
     }
     return productHolder;
 }
-// console.log(productExceptSelfMod(product));
 
 function prodExSePractice(nums) {
     let products = [];
@@ -373,4 +372,28 @@ function prodExSePractice(nums) {
     }
     return products;
 }
-console.log(prodExSePractice(product))
+
+function productPractice(nums) {
+    // declare var and assign empty array
+    let product = [];
+
+    // declare carry var and assign 1 int
+    let carry = 1;
+
+    // loop through array, push carry and re-assign carry with nums[i]
+    for (let i = 0; i < nums.length; i++) {
+        product.push(carry);
+        carry *= nums[i];
+    }
+
+    // reset carry
+    carry = 1;
+    // loop backwards through array, multiply prod[i] with carry,
+    // and re-assign carry with nums[i]
+    for (let i = nums.length - 1; i >= 0; i--) {
+        product[i] *= carry;
+        carry *= nums[i];
+    }
+    return product;
+}
+console.log(productPractice(product))
